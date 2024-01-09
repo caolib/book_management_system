@@ -24,9 +24,9 @@ import java.text.SimpleDateFormat;
 public class JwtTokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //判断当前拦截到的是Controller的方法还是其他资源
+        //判断当前拦截到的是Controller的方法还是其他静态资源
         if (!(handler instanceof HandlerMethod)) {
-            //当前拦截到的不是动态方法，直接放行
+            //静态资源直接放行
             return true;
         }
         //1.获取请求头中的token
@@ -55,7 +55,7 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
             log.error("<令牌异常! -> 无效/过期>");
             //创建响应结果对象
             Result<String> responseResult = Result.error("NOT_LOGIN");
-            //把Result对象转换为JSON格式字符串 (fastjson是阿里巴巴提供的用于实现对象和json的转换工具类)
+            //把Result对象转换为JSON格式字符串
             String json = JSONObject.toJSONString(responseResult);
             //设置响应头
             response.setContentType("application/json;charset=utf-8");
