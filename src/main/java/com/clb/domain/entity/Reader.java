@@ -1,4 +1,4 @@
-package com.clb.domain;
+package com.clb.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

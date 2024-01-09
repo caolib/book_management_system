@@ -1,4 +1,4 @@
-package com.clb.domain;
+package com.clb.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;

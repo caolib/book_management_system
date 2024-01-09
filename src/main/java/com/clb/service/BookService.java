@@ -1,6 +1,6 @@
 package com.clb.service;
 
-import com.clb.domain.Book;
+import com.clb.domain.entity.Book;
 
 import java.util.List;
 

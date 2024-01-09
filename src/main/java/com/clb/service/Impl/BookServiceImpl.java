@@ -1,6 +1,6 @@
 package com.clb.service.Impl;
 
-import com.clb.domain.Book;
+import com.clb.domain.entity.Book;
 import com.clb.mapper.BookMapper;
 import com.clb.service.BookService;
 import org.springframework.stereotype.Service;
