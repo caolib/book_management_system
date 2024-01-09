@@ -8,7 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface AdminMapper {
-
     @Select("SELECT * FROM admin")
     List<Admin> getAll();
 }

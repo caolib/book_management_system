@@ -1,8 +1,13 @@
 package com.clb.domain.dto;
 
-public class Condition {
-    String bookName;
-    String author;
-    String ISBN;
+import lombok.Data;
 
+@Data
+public class Condition {
+    private String bookName;
+    private String author;
+    private String ISBN;
+    private Integer number;
+    private Integer currentPage;
+    private Integer pageSize;
 }
