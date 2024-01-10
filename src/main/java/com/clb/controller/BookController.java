@@ -20,13 +20,6 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
 
-    //@GetMapping
-    //public Result<List<Book>> getAll() {
-    //    List<Book> all = bookService.getAll();
-    //    log.debug("all: " + all);
-    //    return Result.success(all);
-    //}
-
     @PostMapping
     public PageResult<List<Book>> getBookPage(@RequestBody Condition condition) {
         log.info("查询条件:{}",condition);

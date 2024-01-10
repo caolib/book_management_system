@@ -1,6 +1,8 @@
 package com.clb.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
+import com.clb.constant.Common;
+import com.clb.constant.Excep;
 import com.clb.domain.Result;
 import com.clb.util.JwtUtils;
 import io.jsonwebtoken.Claims;
@@ -14,6 +16,8 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.text.SimpleDateFormat;
+
+// todo 登录校验
 
 /**
  * jwt令牌校验的拦截器
@@ -30,15 +34,15 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
             return true;
         }
         //1.获取请求头中的token
-        String token = request.getHeader("token");
+        String token = request.getHeader(Common.TOKEN);
         //2.如果token为空，返回未登录的错误信息
         if (!StringUtils.hasLength(token)) {
-            log.error("token不存在!");
+            log.error(Excep.TOKEN_NOT_EXIST);
             //创建响应结果对象
-            Result<String> responseResult = Result.error("NOT_LOGIN");
-            //把Result对象转换为JSON格式字符串 (fastjson是阿里巴巴提供的用于实现对象和json的转换工具类)
+            Result<String> responseResult = Result.error(401,Excep.NOT_LOGIN);
+            //把Result对象转换为JSON格式字符串
             String json = JSONObject.toJSONString(responseResult);
-            //设置响应头（告知浏览器：响应的数据类型为json、响应的数据编码表为utf-8）
+            //设置响应头,告知浏览器：响应的数据类型为json、响应的数据编码表为utf-8
             response.setContentType("application/json;charset=utf-8");
             response.setStatus(401);
             //响应
@@ -54,7 +58,7 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
         }catch (Exception e){
             log.error("<令牌异常! -> 无效/过期>");
             //创建响应结果对象
-            Result<String> responseResult = Result.error("NOT_LOGIN");
+            Result<Object> responseResult = Result.error(419,Excep.NOT_LOGIN);
             //把Result对象转换为JSON格式字符串
             String json = JSONObject.toJSONString(responseResult);
             //设置响应头

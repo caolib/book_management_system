@@ -1,6 +1,9 @@
 package com.clb.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -11,7 +14,7 @@ public class Result<T> implements Serializable {
     T data;
 
     public static <T> Result<T> success() {
-        Result<T> result = new Result<T>();
+        Result<T> result = new Result<>();
         result.code = 1;
         return result;
     }
@@ -26,6 +29,12 @@ public class Result<T> implements Serializable {
     public static <T> Result<T> error(String msg) {
         Result<T> result = new Result<>();
         result.code = 0;
+        result.msg = msg;
+        return result;
+    }
+    public static <T> Result<T> error(Integer code,String msg) {
+        Result<T> result = new Result<>();
+        result.code = code;
         result.msg = msg;
         return result;
     }
