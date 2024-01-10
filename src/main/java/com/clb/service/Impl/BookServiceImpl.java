@@ -31,7 +31,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public Page<Book> getBookPage(Condition condition) {
         // 取出参数
-        String isbn = condition.getISBN();
+        String isbn = condition.getIsbn();
         String bookName = condition.getBookName();
         String author = condition.getAuthor();
         Integer currentPage = condition.getCurrentPage();

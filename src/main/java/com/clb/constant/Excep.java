@@ -8,6 +8,4 @@ public class Excep {
     public static final String NOT_LOGIN = "未登录!";
     public static final String TOKEN_NOT_EXIST = "令牌不存在!";
 
-
-
 }

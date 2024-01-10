@@ -1,7 +1,9 @@
 package com.clb.controller;
 
 import com.clb.domain.Result;
-import com.clb.domain.dto.ReaderDto;
+import com.clb.domain.dto.LoginDto;
+import com.clb.domain.entity.Reader;
+import com.clb.domain.vo.ReaderVo;
 import com.clb.service.ReaderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +20,7 @@ public class LoginController {
     private final ReaderService readerService;
 
     @PostMapping ("/login")
-    public Result<ReaderDto> login(@RequestBody ReaderDto reader) {
+    public Result<ReaderVo> login(@RequestBody LoginDto reader) {
         log.debug("reader:{}",reader);
         return readerService.login(reader);
     }

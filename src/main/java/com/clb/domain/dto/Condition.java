@@ -6,7 +6,7 @@ import lombok.Data;
 public class Condition {
     private String bookName;
     private String author;
-    private String ISBN;
+    private String isbn;
     private Integer number;
     private Integer currentPage;
     private Integer pageSize;

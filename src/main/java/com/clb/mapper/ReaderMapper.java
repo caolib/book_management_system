@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface ReaderMapper extends BaseMapper<Reader> {
-    @Select("select password from reader where username = #{username};")
-    String selectByName(String username);
+    @Select("select * from reader where username = #{username};")
+    Reader selectByName(String username);
 }

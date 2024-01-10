@@ -20,13 +20,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/login","/register");
     }
 
-    //允许所有跨域请求
-    //@Override
-    //public void addCorsMappings(CorsRegistry registry) {
-    //    registry.addMapping("/**")
-    //            .allowedOriginPatterns("*")
-    //            .allowedMethods("*")
-    //            .allowedHeaders("*")
-    //            .allowCredentials(true);
-    //}
 }

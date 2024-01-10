@@ -3,7 +3,7 @@ package com.clb.domain.dto;
 import lombok.Data;
 
 @Data
-public class ReaderDto {
+public class LoginDto {
     String username;
     String password;
     String token;

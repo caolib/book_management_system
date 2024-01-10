@@ -1,9 +1,11 @@
 package com.clb.service;
 
 import com.clb.domain.Result;
-import com.clb.domain.dto.ReaderDto;
+import com.clb.domain.dto.LoginDto;
+import com.clb.domain.entity.Reader;
+import com.clb.domain.vo.ReaderVo;
 
 public interface ReaderService {
 
-    Result<ReaderDto>login(ReaderDto reader);
+    Result<ReaderVo>login(LoginDto reader);
 }

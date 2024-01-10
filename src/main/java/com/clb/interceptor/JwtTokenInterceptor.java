@@ -1,6 +1,7 @@
 package com.clb.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
+import com.clb.constant.Code;
 import com.clb.constant.Common;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
@@ -16,8 +17,6 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.text.SimpleDateFormat;
-
-// todo 登录校验
 
 /**
  * jwt令牌校验的拦截器
@@ -39,12 +38,12 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
         if (!StringUtils.hasLength(token)) {
             log.error(Excep.TOKEN_NOT_EXIST);
             //创建响应结果对象
-            Result<String> responseResult = Result.error(401,Excep.NOT_LOGIN);
+            Result<String> responseResult = Result.error(Code.NOT_LOGIN_CODE,Excep.NOT_LOGIN);
             //把Result对象转换为JSON格式字符串
             String json = JSONObject.toJSONString(responseResult);
             //设置响应头,告知浏览器：响应的数据类型为json、响应的数据编码表为utf-8
-            response.setContentType("application/json;charset=utf-8");
-            response.setStatus(401);
+            response.setContentType(Common.CONTENT_TYPE);
+            response.setStatus(Code.NOT_LOGIN_CODE);
             //响应
             response.getWriter().write(json);
             //不放行
@@ -56,21 +55,21 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
             String ttl = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(claims.getExpiration());
             log.info("令牌到期时间:{}", ttl);
         }catch (Exception e){
-            log.error("<令牌异常! -> 无效/过期>");
+            log.error("令牌异常! ---> [无效|过期]");
             //创建响应结果对象
-            Result<Object> responseResult = Result.error(419,Excep.NOT_LOGIN);
+            Result<Object> responseResult = Result.error(Code.IDENTITY_EXPIRES,Excep.NOT_LOGIN);
             //把Result对象转换为JSON格式字符串
             String json = JSONObject.toJSONString(responseResult);
             //设置响应头
-            response.setContentType("application/json;charset=utf-8");
+            response.setContentType(Common.CONTENT_TYPE);
             //响应
             response.getWriter().write(json);
-            response.setStatus(419);
+            response.setStatus(Code.IDENTITY_EXPIRES);
             //不放行
             return false;
         }
 
-        //4.放行
+        //4.放行,重设存活时间
         return true;
     }
 }
