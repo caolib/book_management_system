@@ -5,6 +5,7 @@ import com.clb.domain.Result;
 import com.clb.domain.dto.LoginDto;
 import com.clb.domain.entity.Reader;
 import com.clb.domain.vo.ReaderVo;
+import com.clb.exception.AlreadyExistException;
 import com.clb.mapper.ReaderMapper;
 import com.clb.service.ReaderService;
 import com.clb.util.JwtUtils;
@@ -24,11 +25,11 @@ public class ReaderServiceImpl implements ReaderService {
     @Override
     public Result<ReaderVo> login(LoginDto reader) {
         Reader r = readerMapper.selectByName(reader.getUsername());
-        String pwd = r.getPassword();
         //用户不存在
-        if (pwd == null) {
+        if (r == null) {
             return Result.error(Excep.USER_NOT_EXIST);
         }
+        String pwd = r.getPassword();
         //密码错误
         if (!pwd.equals(reader.getPassword())) {
             return Result.error(Excep.WRONG_PASSWORD);
@@ -45,5 +46,11 @@ public class ReaderServiceImpl implements ReaderService {
         BeanUtils.copyProperties(r, readerVo);
 
         return Result.success(readerVo);
+    }
+
+    @Override
+    public Result<Reader> updateReader(Reader reader) {
+        readerMapper.updateById(reader);
+        return Result.success();
     }
 }

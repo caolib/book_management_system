@@ -8,4 +8,6 @@ import com.clb.domain.vo.ReaderVo;
 public interface ReaderService {
 
     Result<ReaderVo>login(LoginDto reader);
+
+    Result<Reader> updateReader(Reader reader);
 }
