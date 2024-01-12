@@ -10,7 +10,7 @@ import com.clb.exception.AlreadyExistException;
 import com.clb.mapper.BookMapper;
 import com.clb.mapper.BorrowMapper;
 import com.clb.service.BookService;
-import com.clb.util.MyUtil;
+import com.clb.util.MyUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -40,9 +40,9 @@ public class BookServiceImpl implements BookService {
         LambdaQueryWrapper<Book> queryWrapper = new LambdaQueryWrapper<>();
         // 根据搜索条件查询
         queryWrapper
-                .eq(MyUtil.StrUtil(isbn), Book::getIsbn, isbn)
-                .like(MyUtil.StrUtil(bookName), Book::getTitle, bookName)
-                .like(MyUtil.StrUtil(author), Book::getAuthor, author);
+                .eq(MyUtils.StrUtil(isbn), Book::getIsbn, isbn)
+                .like(MyUtils.StrUtil(bookName), Book::getTitle, bookName)
+                .like(MyUtils.StrUtil(author), Book::getAuthor, author);
 
         // 分页
         Page<Book> bookPage = bookMapper.selectPage(new Page<>(currentPage,pageSize), queryWrapper);

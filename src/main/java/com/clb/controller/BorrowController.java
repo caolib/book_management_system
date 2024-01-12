@@ -1,17 +1,17 @@
 package com.clb.controller;
 
+import com.clb.constant.Excep;
 import com.clb.domain.Result;
 import com.clb.domain.vo.BorrowVo;
 import com.clb.service.BorrowService;
+import com.clb.util.MyUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.ibatis.annotations.Delete;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -19,33 +19,61 @@ import java.util.List;
 @Slf4j
 public class BorrowController {
     private final BorrowService borrowService;
-
     public BorrowController(BorrowService borrowService) {
         this.borrowService = borrowService;
     }
 
+    /**
+     * 查询用户借阅记录
+     *
+     * @param readerId 读者号
+     */
     @GetMapping
     public Result<List<BorrowVo>> getBorrowByReaderId(Integer readerId) {
         log.info("readerId:{}", readerId);
         return borrowService.getBorrowByReaderId(readerId);
     }
 
+    /**
+     * 用户借阅图书
+     *
+     * @param isbn     书号
+     * @param readerId 读者号
+     * @param dueDate  应归还日期
+     */
     @GetMapping("/borrowBook")
     public Result<String> borrow(String isbn, Integer readerId, String dueDate) {
-        log.info("isbn:{}", isbn);
-        log.info("readerId:{}", readerId);
-        log.info("dueDate:{}", dueDate);
+        log.info("isbn:{} readerId:{} dueDate:{}", isbn, readerId, dueDate);
 
-        // 日期格式转换
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date parsedDueDate = new Date();
-        try {
-            parsedDueDate = format.parse(dueDate);
-        } catch (ParseException e) {
-            //todo 补充信息
-            return Result.error("");
-        }
-        return  borrowService.borrow(isbn,readerId,parsedDueDate);
+        Date date = MyUtils.StrToDate(dueDate);
+        return borrowService.borrow(isbn, readerId, date);
+    }
+
+    /**
+     * 归还书籍
+     * @param id 借阅号
+     */
+    @GetMapping("/returnBook")
+    public Result<String> returnBook(Integer id,String isbn) {
+        log.info("returnBook id:{}", id);
+
+        return borrowService.returnBook(id,isbn);
+    }
+
+    @DeleteMapping
+    public Result<String> deleteBorrow(Integer id){
+        log.info("deleteBorrow id:{}", id);
+
+        return borrowService.deleteById(id);
+    }
+
+    @PostMapping("/batch")
+    public Result<String> deleteBatch(@RequestBody List<Integer>ids) {
+        log.info("ids:{}", ids);
+
+        // todo 完成批量删除业务需求
+
+        return null;
     }
 
 }

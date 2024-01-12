@@ -6,15 +6,19 @@ import com.clb.domain.vo.BorrowVo;
 import com.clb.mapper.BookMapper;
 import com.clb.mapper.BorrowMapper;
 import com.clb.service.BorrowService;
+import com.clb.util.MyUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class BorrowServiceImpl implements BorrowService {
 
@@ -42,17 +46,49 @@ public class BorrowServiceImpl implements BorrowService {
         return Result.success(result);
     }
 
+    /**
+     * 读者借阅图书，向借阅表中插入记录的同时，更新图书的库存量，同时完成
+     * 使用@Transactional让方法以事务方式执行
+     */
+    @Transactional
     @Override
     public Result<String> borrow(String isbn, Integer readerId, Date dueDate) {
-        //todo 解决错误添加信息
+        // 向借阅表中插入借阅记录
         Borrow borrow = Borrow.builder()
                 .isbn(isbn)
-                .returnDate(dueDate)
-                .borrowDate(new Date())
+                .dueDate(dueDate)
+                .borrowDate(MyUtils.now())
                 .readerId(String.valueOf(readerId))
                 .build();
 
         borrowMapper.insert(borrow);
+
+        // 更新图书库存-1
+        bookMapper.updateNumberByIsbn(isbn,-1);
+
+        return Result.success();
+    }
+
+    /**
+     * 读者归还图书，向借阅表中插入归还日期，同时更新图书的库存量
+     * 使用@Transactional让方法以事务方式执行
+     */
+    @Transactional
+    @Override
+    public Result<String> returnBook(Integer id,String isbn) {
+        //更新借阅表中信息
+        borrowMapper.updateReturnDateById(id, MyUtils.now());
+
+        //同时更新图书库存+1
+        bookMapper.updateNumberByIsbn(isbn, 1);
+
+        return Result.success();
+    }
+
+    @Override
+    public Result<String> deleteById(Integer id) {
+        //根据id删除借阅记录
+        borrowMapper.deleteById(id);
 
         return Result.success();
     }

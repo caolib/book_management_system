@@ -5,14 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class Manage {
-
     private String adminId;
     private String isbn;
     private Date manageDate;
