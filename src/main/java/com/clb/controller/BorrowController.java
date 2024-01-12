@@ -3,14 +3,12 @@ package com.clb.controller;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
 import com.clb.domain.vo.BorrowVo;
+import com.clb.exception.BaseException;
 import com.clb.service.BorrowService;
 import com.clb.util.MyUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.sql.Date;
 import java.util.List;
 
@@ -45,6 +43,10 @@ public class BorrowController {
     public Result<String> borrow(String isbn, Integer readerId, String dueDate) {
         log.info("isbn:{} readerId:{} dueDate:{}", isbn, readerId, dueDate);
 
+        if (!MyUtils.StrUtil(dueDate)) {
+            throw new BaseException(Excep.RETURN_DATE_IS_NULL);
+        }
+
         Date date = MyUtils.StrToDate(dueDate);
         return borrowService.borrow(isbn, readerId, date);
     }
@@ -71,9 +73,7 @@ public class BorrowController {
     public Result<String> deleteBatch(@RequestBody List<Integer>ids) {
         log.info("ids:{}", ids);
 
-        // todo 完成批量删除业务需求
-
-        return null;
+        return borrowService.deleteBatchByIds(ids);
     }
 
 }

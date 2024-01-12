@@ -3,6 +3,7 @@ package com.clb.handle;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
 import com.clb.exception.BaseException;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -19,11 +20,12 @@ public class GlobalExceptionHandler {
     /**
      * 捕获业务异常
      */
-    @ExceptionHandler
+    @ExceptionHandler(BaseException.class)
     public Result<String> exceptionHandler(BaseException ex) {
         log.error("异常信息：{}", ex.getMessage());
         return Result.error(ex.getMessage());
     }
+
 
     /**
      * 完整性约束冲突异常

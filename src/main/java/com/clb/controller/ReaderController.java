@@ -20,7 +20,7 @@ public class ReaderController {
     }
 
     @PostMapping("/update")
-    public Result updateReader(@RequestBody Reader reader) {
+    public Result<Reader> updateReader(@RequestBody Reader reader) {
         log.info("reader:{}", reader);
         return readerService.updateReader(reader);
     }

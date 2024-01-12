@@ -1,8 +1,10 @@
 package com.clb.service.Impl;
 
+import com.clb.constant.Excep;
 import com.clb.domain.Borrow;
 import com.clb.domain.Result;
 import com.clb.domain.vo.BorrowVo;
+import com.clb.exception.BaseException;
 import com.clb.mapper.BookMapper;
 import com.clb.mapper.BorrowMapper;
 import com.clb.service.BorrowService;
@@ -78,7 +80,6 @@ public class BorrowServiceImpl implements BorrowService {
     public Result<String> returnBook(Integer id,String isbn) {
         //更新借阅表中信息
         borrowMapper.updateReturnDateById(id, MyUtils.now());
-
         //同时更新图书库存+1
         bookMapper.updateNumberByIsbn(isbn, 1);
 
@@ -89,6 +90,14 @@ public class BorrowServiceImpl implements BorrowService {
     public Result<String> deleteById(Integer id) {
         //根据id删除借阅记录
         borrowMapper.deleteById(id);
+
+        return Result.success();
+    }
+
+
+    @Override
+    public Result<String> deleteBatchByIds(List<Integer> ids) {
+        borrowMapper.deleteBatchIds(ids);
 
         return Result.success();
     }

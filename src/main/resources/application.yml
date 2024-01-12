@@ -1,7 +1,6 @@
 server:
   port: 8080
 
-
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
@@ -11,9 +10,9 @@ mybatis-plus:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/java_design
     username: root
     password: 123456
-    url: jdbc:mysql://localhost:3306/java_design?serverTimezone=Asia/Shanghai
 
 logging:
   level:

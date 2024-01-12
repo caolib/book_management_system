@@ -16,4 +16,7 @@ public interface BorrowService {
     Result<String> returnBook(Integer id,String isbn);
 
     Result<String> deleteById(Integer id);
+
+    Result<String> deleteBatchByIds(List<Integer> ids);
+
 }

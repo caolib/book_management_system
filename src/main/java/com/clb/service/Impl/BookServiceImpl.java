@@ -24,10 +24,6 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
     private final BorrowMapper borrowMapper;
 
-    public List<Book> getAll() {
-        return bookMapper.selectList(null);
-    }
-
     @Override
     public Page<Book> getBookPage(Condition condition) {
         // 取出参数

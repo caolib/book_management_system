@@ -10,15 +10,21 @@ import java.time.LocalDate;
 import java.util.TimeZone;
 
 public class MyUtils {
-    // 判断字符串不为null且不为空字符串
+    /**
+     * 判断字符串不为null且不为空字符串
+     */
     public static boolean StrUtil(String string){
         return string != null && !string.isEmpty();
     }
 
-    //字符串类型日期转换成日期
+    /**
+     * 解析字符串为日期
+     */
     public static Date StrToDate(String date){
+        if (!StrUtil(date)) {
+            throw new BaseException(Excep.DATE_IS_NULL);
+        }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        format.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         try {
             java.util.Date utilDate = format.parse(date);
             return new java.sql.Date(utilDate.getTime());
@@ -27,6 +33,9 @@ public class MyUtils {
         }
     }
 
+    /**
+     * @return 返回当前日期
+     */
     public static Date now(){
         return Date.valueOf(LocalDate.now());
     }
