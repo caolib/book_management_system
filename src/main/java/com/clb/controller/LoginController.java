@@ -30,4 +30,11 @@ public class LoginController {
         return readerService.login(reader);
     }
 
+    @PostMapping("/register")
+    public Result<String> register(@RequestBody Reader reader) {
+        log.debug("register-reader:{}", reader);
+
+        return readerService.register(reader);
+    }
+
 }

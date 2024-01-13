@@ -17,6 +17,7 @@ import java.util.List;
 @Slf4j
 public class BorrowController {
     private final BorrowService borrowService;
+
     public BorrowController(BorrowService borrowService) {
         this.borrowService = borrowService;
     }
@@ -53,24 +54,34 @@ public class BorrowController {
 
     /**
      * 归还书籍
+     *
      * @param id 借阅号
      */
     @GetMapping("/returnBook")
-    public Result<String> returnBook(Integer id,String isbn) {
+    public Result<String> returnBook(Integer id, String isbn) {
         log.info("returnBook id:{}", id);
 
-        return borrowService.returnBook(id,isbn);
+        return borrowService.returnBook(id, isbn);
     }
 
+
+    /**
+     * 根据借阅号删除借阅记录
+     * @param id 借阅号
+     */
     @DeleteMapping
-    public Result<String> deleteBorrow(Integer id){
+    public Result<String> deleteBorrow(Integer id) {
         log.info("deleteBorrow id:{}", id);
 
         return borrowService.deleteById(id);
     }
 
+    /**
+     * 批量删除借阅记录
+     * @param ids 借阅号数组
+     */
     @PostMapping("/batch")
-    public Result<String> deleteBatch(@RequestBody List<Integer>ids) {
+    public Result<String> deleteBatch(@RequestBody List<Integer> ids) {
         log.info("ids:{}", ids);
 
         return borrowService.deleteBatchByIds(ids);

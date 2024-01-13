@@ -10,4 +10,6 @@ public interface ReaderService {
     Result<ReaderVo>login(LoginDto reader);
 
     Result<Reader> updateReader(Reader reader);
+
+    Result<String> register(Reader reader);
 }

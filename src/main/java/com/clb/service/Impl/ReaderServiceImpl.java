@@ -1,14 +1,17 @@
 package com.clb.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
 import com.clb.domain.dto.LoginDto;
 import com.clb.domain.entity.Reader;
 import com.clb.domain.vo.ReaderVo;
 import com.clb.exception.AlreadyExistException;
+import com.clb.exception.BaseException;
 import com.clb.mapper.ReaderMapper;
 import com.clb.service.ReaderService;
 import com.clb.util.JwtUtils;
+import com.clb.util.MyUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -37,7 +40,7 @@ public class ReaderServiceImpl implements ReaderService {
 
         //生成令牌
         Map<String, Object> claims = new HashMap<>();
-        claims.put("clibin", reader.getUsername());
+        claims.put("username", reader.getUsername());
         String token = JwtUtils.generateJwt(claims);
 
         // 封装信息
@@ -51,6 +54,42 @@ public class ReaderServiceImpl implements ReaderService {
     @Override
     public Result<Reader> updateReader(Reader reader) {
         readerMapper.updateById(reader);
+        return Result.success();
+    }
+
+
+    @Override
+    public Result<String> register(Reader reader) {
+        String username = reader.getUsername();
+        String tel = reader.getTel();
+
+        // 用户名，密码，电话都不能空
+        if(!MyUtils.StrUtil(username)||!MyUtils.StrUtil(reader.getPassword())||!MyUtils.StrUtil(tel)){
+            throw new BaseException(Excep.REGISTER_ERROR);
+        }
+
+        ////密码长度至少为3位
+        //if (reader.getPassword().length() < 3) {
+        //    throw new BaseException(Excep.PWD_LENGTH_ERROR);
+        //}
+
+        // 查询用户名是否存在
+        LambdaQueryWrapper<Reader> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Reader::getUsername, username);
+        Long l = readerMapper.selectCount(wrapper);
+        if (l!=0) {
+            throw new AlreadyExistException(Excep.USER_ALREADY_EXIST);
+        }
+
+        //查询电话是否存在
+        wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Reader::getTel, tel);
+        l = readerMapper.selectCount(wrapper);
+        if (l != 0) {
+            throw new AlreadyExistException(Excep.TEL_ALREADY_EXIST);
+        }
+
+        readerMapper.register(reader);
         return Result.success();
     }
 }
