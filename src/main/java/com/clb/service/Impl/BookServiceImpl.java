@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.clb.constant.Excep;
 import com.clb.domain.Borrow;
+import com.clb.domain.Result;
 import com.clb.domain.dto.Condition;
 import com.clb.domain.entity.Book;
 import com.clb.exception.AlreadyExistException;
+import com.clb.exception.BaseException;
 import com.clb.mapper.BookMapper;
 import com.clb.mapper.BorrowMapper;
 import com.clb.service.BookService;
@@ -41,7 +43,7 @@ public class BookServiceImpl implements BookService {
                 .like(MyUtils.StrUtil(author), Book::getAuthor, author);
 
         // 分页
-        Page<Book> bookPage = bookMapper.selectPage(new Page<>(currentPage,pageSize), queryWrapper);
+        Page<Book> bookPage = bookMapper.selectPage(new Page<>(currentPage, pageSize), queryWrapper);
 
         List<Book> records = bookPage.getRecords();
         long total = bookPage.getTotal();
@@ -63,5 +65,34 @@ public class BookServiceImpl implements BookService {
             throw new AlreadyExistException(Excep.DELETE_BOOK_NOT_ALLOW);
         }
         bookMapper.deleteById(isbn);
+    }
+
+    @Override
+    public Result<String> add(Book book) {
+        String isbn = book.getIsbn();
+        String title = book.getTitle();
+        Integer number = book.getNumber();
+        //isbn不能为空
+        if (!MyUtils.StrUtil(isbn)) {
+            throw new BaseException(Excep.ISBN_IS_NULL);
+        }
+        //书名不能为空
+        if (!MyUtils.StrUtil(title)) {
+            throw new BaseException(Excep.TITLE_IS_NULL);
+        }
+        // 库存量大于等于0
+        if (number == null || number < 0) {
+            throw new BaseException(Excep.BOOK_NUMBER_ERROR);
+        }
+
+        // 查找isbn是否存在
+        Long l = bookMapper.getByIsbn(isbn);
+        if (l > 0) {
+            throw new AlreadyExistException(Excep.ISBN_ALREADY_EXIST);
+        }
+
+        bookMapper.insert(book);
+
+        return Result.success();
     }
 }

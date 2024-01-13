@@ -16,4 +16,6 @@ public interface BookMapper extends BaseMapper<Book> {
     @Update("UPDATE book SET number = number + #{num} WHERE ISBN = #{isbn}")
     void updateNumberByIsbn(String isbn,Integer num);
 
+    @Select("SELECT COUNT(*) FROM book WHERE ISBN = #{isbn}")
+    Long getByIsbn(String isbn);
 }

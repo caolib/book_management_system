@@ -45,4 +45,11 @@ public class BookController {
         bookService.deleteBookByIsbn(isbn);
         return Result.success();
     }
+
+    @PostMapping("/add")
+    public Result<String> addBook(@RequestBody Book book) {
+        log.debug("book:{}", book);
+
+        return bookService.add(book);
+    }
 }
