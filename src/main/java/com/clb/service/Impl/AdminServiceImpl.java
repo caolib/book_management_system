@@ -1,13 +1,17 @@
 package com.clb.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
 import com.clb.domain.dto.LoginDto;
 import com.clb.domain.entity.Admin;
 import com.clb.domain.vo.AdminVo;
+import com.clb.exception.AlreadyExistException;
+import com.clb.exception.BaseException;
 import com.clb.mapper.AdminMapper;
 import com.clb.service.AdminService;
 import com.clb.util.JwtUtils;
+import com.clb.util.MyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -57,6 +61,27 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Result<String> updateNicknameById(Integer id, String nickname) {
         adminMapper.updateNicknameById(id,nickname);
+
+        return Result.success();
+    }
+
+    @Override
+    public Result<String> register(Admin admin) {
+        String username = admin.getUsername();
+        String password = admin.getPassword();
+
+        // 用户名和密码不能为空
+        if (!MyUtils.StrUtil(username) || !MyUtils.StrUtil(password)) {
+            throw new BaseException(Excep.REGISTER_ERROR);
+        }
+
+        // 查询用户名是否已经存在
+        Admin a = adminMapper.selectByUsername(username);
+        if (a != null) {
+            throw new AlreadyExistException(Excep.USER_ALREADY_EXIST);
+        }
+
+        adminMapper.insert(admin);
 
         return Result.success();
     }

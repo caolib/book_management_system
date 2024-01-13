@@ -68,11 +68,6 @@ public class ReaderServiceImpl implements ReaderService {
             throw new BaseException(Excep.REGISTER_ERROR);
         }
 
-        ////密码长度至少为3位
-        //if (reader.getPassword().length() < 3) {
-        //    throw new BaseException(Excep.PWD_LENGTH_ERROR);
-        //}
-
         // 查询用户名是否存在
         LambdaQueryWrapper<Reader> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Reader::getUsername, username);

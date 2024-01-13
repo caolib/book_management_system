@@ -13,11 +13,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //注册自定义拦截器对象,拦截业务请求，不拦截登录注册请求
+        //注册自定义拦截器对象,不拦截登录注册请求
         registry.addInterceptor(jwtTokenInterceptor)
-                .addPathPatterns("/book")
-                .addPathPatterns("/borrow")
-                .excludePathPatterns("/login","/register");
+                .excludePathPatterns(
+                        "/reader/login",
+                        "/admin/login",
+                        "/reader/register",
+                        "/admin/register"
+                );
     }
 
 }

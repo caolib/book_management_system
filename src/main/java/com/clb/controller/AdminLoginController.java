@@ -26,4 +26,11 @@ public class AdminLoginController {
         return adminService.login(admin);
     }
 
+    @PostMapping("/register")
+    public Result<String> register(@RequestBody Admin admin) {
+        log.debug("admin{}", admin);
+
+        return adminService.register(admin);
+    }
+
 }
