@@ -8,15 +8,30 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
 
 spring:
+  # mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/java_design
     username: root
     password: 123456
+
+  # redis
+  data:
+    redis:
+      host: 192.168.0.88
+      password: 123456
+      port: 6379
+      database: 0
+  # 使用redis缓存可以将此项注释
+  #cache:
+    #type: none
+
+  # 热重载排除advice文件
   devtools:
     restart:
       additional-exclude: com/clb/util/Advice.class
 
+# 日志
 logging:
   level:
     com.clb: debug

@@ -2,6 +2,7 @@ package com.clb.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.clb.constant.Cache;
 import com.clb.domain.PageResult;
 import com.clb.domain.Result;
 import com.clb.domain.dto.Condition;
@@ -9,13 +10,15 @@ import com.clb.domain.entity.Book;
 import com.clb.service.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/book")
-@Slf4j
 @RequiredArgsConstructor
 public class BookController {
     private final BookService bookService;
@@ -26,6 +29,7 @@ public class BookController {
      * @param condition 查询条件
      */
     @PostMapping
+    @Cacheable(cacheNames = Cache.BOOK_PAGE)
     public PageResult<List<Book>> getBookPage(@RequestBody Condition condition) {
         log.info("查询条件:{}", condition);
 
@@ -42,6 +46,7 @@ public class BookController {
      *
      * @param isbn 书号
      */
+    @CacheEvict(value = Cache.BOOK_PAGE,allEntries = true)
     @DeleteMapping("/{isbn}")
     public Result<String> deleteBookByIsbn(@PathVariable String isbn) {
         log.debug("isbn:{}", isbn);
@@ -51,6 +56,7 @@ public class BookController {
     }
 
     @PostMapping("/add")
+    @CacheEvict(value = Cache.BOOK_PAGE,allEntries = true)
     public Result<String> addBook(@RequestBody Book book) {
         log.debug("book:{}", book);
 
@@ -58,6 +64,7 @@ public class BookController {
     }
 
     @PutMapping
+    @CacheEvict(value = Cache.BOOK_PAGE,allEntries = true)
     public Result<String> updateBook(@RequestBody Book book) {
         log.debug("book:{}", book);
 

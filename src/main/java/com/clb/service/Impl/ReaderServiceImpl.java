@@ -98,7 +98,7 @@ public class ReaderServiceImpl implements ReaderService {
         String tel = condition.getTel();
         wrapper
                 .like(MyUtils.StrUtil(username), Reader::getUsername, username)
-                .like(MyUtils.StrUtil(nickname), Reader::getUsername, nickname)
+                .like(MyUtils.StrUtil(nickname), Reader::getNickname, nickname)
                 .eq(MyUtils.StrUtil(tel), Reader::getTel, tel);
 
         List<Reader> readers = readerMapper.selectList(wrapper);

@@ -1,5 +1,6 @@
 package com.clb.controller;
 
+import com.clb.constant.Cache;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
 import com.clb.domain.vo.BorrowVo;
@@ -7,27 +8,28 @@ import com.clb.exception.BaseException;
 import com.clb.service.BorrowService;
 import com.clb.util.MyUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/borrow")
-@Slf4j
 public class BorrowController {
     private final BorrowService borrowService;
-
     public BorrowController(BorrowService borrowService) {
         this.borrowService = borrowService;
     }
 
     /**
      * 查询用户借阅记录
-     *
      * @param readerId 读者号
      */
     @GetMapping
+    @Cacheable(cacheNames = Cache.BORROW,key = "#readerId")
     public Result<List<BorrowVo>> getBorrowByReaderId(Integer readerId) {
         log.info("readerId:{}", readerId);
         return borrowService.getBorrowByReaderId(readerId);
@@ -41,6 +43,7 @@ public class BorrowController {
      * @param dueDate  应归还日期
      */
     @GetMapping("/borrowBook")
+    @CacheEvict(value = Cache.BORROW,key = "#readerId")
     public Result<String> borrow(String isbn, Integer readerId, String dueDate) {
         log.info("isbn:{} readerId:{} dueDate:{}", isbn, readerId, dueDate);
 
@@ -58,6 +61,7 @@ public class BorrowController {
      * @param id 借阅号
      */
     @GetMapping("/returnBook")
+    @CacheEvict(value = Cache.BORROW,allEntries = true)
     public Result<String> returnBook(Integer id, String isbn) {
         log.info("returnBook id:{}", id);
 
@@ -70,6 +74,7 @@ public class BorrowController {
      * @param id 借阅号
      */
     @DeleteMapping
+    @CacheEvict(value = Cache.BORROW,allEntries = true)
     public Result<String> deleteBorrow(Integer id) {
         log.info("deleteBorrow id:{}", id);
 
@@ -81,6 +86,7 @@ public class BorrowController {
      * @param ids 借阅号数组
      */
     @PostMapping("/batch")
+    @CacheEvict(value = Cache.BORROW,allEntries = true)
     public Result<String> deleteBatch(@RequestBody List<Integer> ids) {
         log.info("ids:{}", ids);
 
