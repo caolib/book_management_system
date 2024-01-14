@@ -4,8 +4,10 @@ import com.clb.mapper.AdminMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootTest
+@EnableTransactionManagement
 class BookApplicationTests {
 
     @Autowired

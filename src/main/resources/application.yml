@@ -13,9 +13,13 @@ spring:
     url: jdbc:mysql://localhost:3306/java_design
     username: root
     password: 123456
+  devtools:
+    restart:
+      additional-exclude: com/clb/util/Advice.class
 
 logging:
   level:
     com.clb: debug
   pattern:
     dateformat: MM-dd HH:mm:ss.SSS
+
