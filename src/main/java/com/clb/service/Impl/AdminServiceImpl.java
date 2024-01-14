@@ -1,6 +1,5 @@
 package com.clb.service.Impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
 import com.clb.domain.dto.LoginDto;
@@ -58,12 +57,6 @@ public class AdminServiceImpl implements AdminService {
         return Result.success(adminVo);
     }
 
-    @Override
-    public Result<String> updateNicknameById(Integer id, String nickname) {
-        adminMapper.updateNicknameById(id,nickname);
-
-        return Result.success();
-    }
 
     @Override
     public Result<String> register(Admin admin) {
@@ -82,6 +75,13 @@ public class AdminServiceImpl implements AdminService {
         }
 
         adminMapper.insert(admin);
+
+        return Result.success();
+    }
+
+    @Override
+    public Result<String> updateById(Admin admin) {
+        adminMapper.updateById(admin);
 
         return Result.success();
     }

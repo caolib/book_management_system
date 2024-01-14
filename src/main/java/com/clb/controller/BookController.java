@@ -22,11 +22,12 @@ public class BookController {
 
     /**
      * 书籍信息的分页查询
+     *
      * @param condition 查询条件
      */
     @PostMapping
     public PageResult<List<Book>> getBookPage(@RequestBody Condition condition) {
-        log.info("查询条件:{}",condition);
+        log.info("查询条件:{}", condition);
 
         Page<Book> bookPage = bookService.getBookPage(condition);
 
@@ -38,10 +39,13 @@ public class BookController {
 
     /**
      * 根据isbn删除书籍信息
+     *
      * @param isbn 书号
      */
     @DeleteMapping("/{isbn}")
-    public Result<String> deleteBookByIsbn(@PathVariable Integer isbn) {
+    public Result<String> deleteBookByIsbn(@PathVariable String isbn) {
+        log.debug("isbn:{}", isbn);
+
         bookService.deleteBookByIsbn(isbn);
         return Result.success();
     }
@@ -51,5 +55,12 @@ public class BookController {
         log.debug("book:{}", book);
 
         return bookService.add(book);
+    }
+
+    @PutMapping
+    public Result<String> updateBook(@RequestBody Book book) {
+        log.debug("book:{}", book);
+
+        return bookService.updateBook(book);
     }
 }

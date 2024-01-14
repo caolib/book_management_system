@@ -9,7 +9,7 @@ public interface AdminService {
 
     Result<AdminVo> login(LoginDto admin);
 
-    Result<String> updateNicknameById(Integer id, String nickname);
-
     Result<String> register(Admin admin);
+
+    Result<String> updateById(Admin admin);
 }

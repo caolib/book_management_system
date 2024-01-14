@@ -17,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -54,6 +55,7 @@ public class ReaderServiceImpl implements ReaderService {
     @Override
     public Result<Reader> updateReader(Reader reader) {
         readerMapper.updateById(reader);
+
         return Result.success();
     }
 
@@ -64,7 +66,7 @@ public class ReaderServiceImpl implements ReaderService {
         String tel = reader.getTel();
 
         // 用户名，密码，电话都不能空
-        if(!MyUtils.StrUtil(username)||!MyUtils.StrUtil(reader.getPassword())||!MyUtils.StrUtil(tel)){
+        if (!MyUtils.StrUtil(username) || !MyUtils.StrUtil(reader.getPassword()) || !MyUtils.StrUtil(tel)) {
             throw new BaseException(Excep.REGISTER_ERROR);
         }
 
@@ -72,7 +74,7 @@ public class ReaderServiceImpl implements ReaderService {
         LambdaQueryWrapper<Reader> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Reader::getUsername, username);
         Long l = readerMapper.selectCount(wrapper);
-        if (l!=0) {
+        if (l != 0) {
             throw new AlreadyExistException(Excep.USER_ALREADY_EXIST);
         }
 
@@ -87,4 +89,34 @@ public class ReaderServiceImpl implements ReaderService {
         readerMapper.register(reader);
         return Result.success();
     }
+
+    @Override
+    public Result<List<Reader>> getAllReader(Reader condition) {
+        LambdaQueryWrapper<Reader> wrapper = new LambdaQueryWrapper<>();
+        String username = condition.getUsername();
+        String nickname = condition.getNickname();
+        String tel = condition.getTel();
+        wrapper
+                .like(MyUtils.StrUtil(username), Reader::getUsername, username)
+                .like(MyUtils.StrUtil(nickname), Reader::getUsername, nickname)
+                .eq(MyUtils.StrUtil(tel), Reader::getTel, tel);
+
+        List<Reader> readers = readerMapper.selectList(wrapper);
+
+        return Result.success(readers);
+    }
+
+    @Override
+    public Result<String> deleteById(Integer id) {
+        // 查询id是否存在
+        Reader reader = readerMapper.selectById(id);
+        if (reader == null) {
+            throw new BaseException(Excep.USER_NOT_EXIST);
+        }
+
+        readerMapper.deleteById(id);
+
+        return Result.success();
+    }
+
 }

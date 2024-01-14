@@ -1,13 +1,9 @@
 package com.clb.handle;
 
-import com.clb.constant.Common;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
-import com.clb.domain.entity.Reader;
 import com.clb.exception.BaseException;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -41,6 +37,7 @@ public class GlobalExceptionHandler {
             return Result.error(Excep.UNKNOWN_ERROR);
         }
     }
+
 
     /**
      * redis未开启可能导致的异常

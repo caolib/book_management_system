@@ -55,8 +55,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void deleteBookByIsbn(Integer isbn) {
-        // 先查找借阅表中是否有该书籍信息
+    public void deleteBookByIsbn(String isbn) {
+        // 查找借阅表中是否有该书籍信息
         LambdaQueryWrapper<Borrow> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Borrow::getIsbn, isbn);
         List<Borrow> borrows = borrowMapper.selectList(queryWrapper);
@@ -64,6 +64,7 @@ public class BookServiceImpl implements BookService {
         if (!borrows.isEmpty()) {
             throw new AlreadyExistException(Excep.DELETE_BOOK_NOT_ALLOW);
         }
+
         bookMapper.deleteById(isbn);
     }
 
@@ -92,6 +93,20 @@ public class BookServiceImpl implements BookService {
         }
 
         bookMapper.insert(book);
+
+        return Result.success();
+    }
+
+    @Override
+    public Result<String> updateBook(Book book) {
+        String isbn = book.getIsbn();
+        //查询isbn是否存在
+        Book b = bookMapper.selectById(isbn);
+        if (b == null) {
+            throw new BaseException(Excep.ISBN_NOT_EXIST);
+        }
+
+        bookMapper.updateById(book);
 
         return Result.success();
     }

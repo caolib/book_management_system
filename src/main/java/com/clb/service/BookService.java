@@ -5,12 +5,12 @@ import com.clb.domain.Result;
 import com.clb.domain.dto.Condition;
 import com.clb.domain.entity.Book;
 
-import java.util.List;
-
 public interface BookService {
     Page<Book> getBookPage(Condition condition);
 
-    void deleteBookByIsbn(Integer isbn);
+    void deleteBookByIsbn(String isbn);
 
     Result<String> add(Book book);
+
+    Result<String> updateBook(Book book);
 }

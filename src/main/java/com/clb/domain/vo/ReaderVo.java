@@ -10,6 +10,6 @@ public class ReaderVo {
     private String gender;
     private Integer age;
     private String tel;
+    private String password;
     private String token;
-
 }
