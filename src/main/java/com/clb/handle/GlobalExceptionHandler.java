@@ -3,6 +3,7 @@ package com.clb.handle;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
 import com.clb.exception.BaseException;
+import io.lettuce.core.RedisCommandExecutionException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -31,9 +32,16 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public Result<String> exceptionHandler(SQLIntegrityConstraintViolationException ex) {
-        if (ex.getMessage().contains("book")) {
+        String message = ex.getMessage();
+        // 如果借阅记录中有读者或图书信息，那么读者和图书都不能被删除
+        if (message.contains("book")) {
+            log.error(message);
             return Result.error(Excep.DELETE_BOOK_NOT_ALLOW);
+        } else if (message.contains("reader")) {
+            log.error(message);
+            return Result.error(Excep.DELETE_READER_NOT_ALLOW);
         } else {
+            log.error(message);
             return Result.error(Excep.UNKNOWN_ERROR);
         }
     }
@@ -44,8 +52,28 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(SocketException.class)
     public Result<String> exceptionHandler(SocketException socketException) {
-        log.error("检查redis是否开启 " + socketException.getMessage());
-        return Result.error("SocketException!检查redis是否开启");
+        String message = socketException.getMessage();
+        if (message.contains("Connection reset")) {
+            log.error(message + "redis未连接...");
+            return Result.error("redis未连接...");
+        }
+        log.error("检查redis是否开启 " + message);
+        return Result.error(message + " 检查redis是否连接");
+    }
+
+    @ExceptionHandler(RedisCommandExecutionException.class)
+    public Result<String> redisCommandException(RedisCommandExecutionException exception) {
+        String message = exception.getMessage();
+        if (message.contains("no password is set")) {
+            log.error("当前redis没有密码，yml中错误设置了密码");
+            return Result.error(message);
+        } else if (message.contains("invalid password")) {
+            log.error(message+" redis密码错误");
+            return Result.error("redis密码错误!");
+        } else {
+            log.error(message);
+            return Result.error(Excep.UNKNOWN_ERROR);
+        }
     }
 
 }

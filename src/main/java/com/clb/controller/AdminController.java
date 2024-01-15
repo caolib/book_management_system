@@ -15,6 +15,10 @@ public class AdminController {
 
     private final AdminService adminService;
 
+    /**
+     * 更新管理员信息
+     */
+
     @PutMapping("/update")
     public Result<String> update(@RequestBody Admin admin) {
         log.info("admin:{}",admin);

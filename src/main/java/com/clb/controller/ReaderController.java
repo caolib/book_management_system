@@ -2,7 +2,6 @@ package com.clb.controller;
 
 import com.clb.constant.Cache;
 import com.clb.domain.Result;
-import com.clb.domain.dto.Condition;
 import com.clb.domain.entity.Reader;
 import com.clb.service.ReaderService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +20,10 @@ public class ReaderController {
         this.readerService = readerService;
     }
 
+
+    /**
+     * 查询所有用户信息
+     */
     @PostMapping
     @Cacheable(cacheNames = Cache.READER,key = "#condition")
     public Result<List<Reader>> getAllReader(@RequestBody Reader condition) {
@@ -39,6 +42,9 @@ public class ReaderController {
         return readerService.updateReader(reader);
     }
 
+    /**
+     * 根据id删除用户
+     */
     @DeleteMapping("/{id}")
     @CacheEvict(value = Cache.READER,allEntries = true)
     public Result<String> deleteById(@PathVariable Integer id) {

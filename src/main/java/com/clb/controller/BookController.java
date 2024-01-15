@@ -55,6 +55,9 @@ public class BookController {
         return Result.success();
     }
 
+    /**
+     * 添加图书
+     */
     @PostMapping("/add")
     @CacheEvict(value = Cache.BOOK_PAGE,allEntries = true)
     public Result<String> addBook(@RequestBody Book book) {
@@ -63,6 +66,9 @@ public class BookController {
         return bookService.add(book);
     }
 
+    /**
+     * 更新图书信息
+     */
     @PutMapping
     @CacheEvict(value = Cache.BOOK_PAGE,allEntries = true)
     public Result<String> updateBook(@RequestBody Book book) {

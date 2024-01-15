@@ -6,8 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import java.sql.Date;
-
 @Mapper
 public interface BookMapper extends BaseMapper<Book> {
     @Select("SELECT title FROM book WHERE ISBN = #{isbn}")

@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminLoginController {
     private final AdminService adminService;
 
+    /**
+     * 管理员登录
+     */
     @PostMapping("/login")
     public Result<AdminVo>login(@RequestBody LoginDto admin){
         log.debug("admin:{}", admin);
@@ -26,6 +29,9 @@ public class AdminLoginController {
         return adminService.login(admin);
     }
 
+    /**
+     * 管理员注册
+     */
     @PostMapping("/register")
     public Result<String> register(@RequestBody Admin admin) {
         log.debug("admin{}", admin);

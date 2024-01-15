@@ -30,6 +30,9 @@ public class LoginController {
         return readerService.login(reader);
     }
 
+    /**
+     * 用户注册
+     */
     @PostMapping("/register")
     public Result<String> register(@RequestBody Reader reader) {
         log.debug("register-reader:{}", reader);

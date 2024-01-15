@@ -14,7 +14,7 @@ public class TestRedis {
     @Test
     public void testRedis() {
         ValueOperations<String, String> ops = redisTemplate.opsForValue();
-        ops.set("name", "ikun");
+        ops.set("name", "clb");
 
         String name = ops.get("name");
         System.out.println(name);

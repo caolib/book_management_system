@@ -69,7 +69,7 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        //4.放行,重设存活时间
+        //4.放行
         return true;
     }
 }
