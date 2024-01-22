@@ -26,7 +26,7 @@ public class BookController {
     /**
      * 书籍信息的分页查询
      *
-     * @param condition 查询条件
+     * @param condition 查询条件，包含书名、作者和isbn及分页条件
      */
     @PostMapping
     @Cacheable(cacheNames = Cache.BOOK_PAGE)
@@ -46,7 +46,7 @@ public class BookController {
      *
      * @param isbn 书号
      */
-    @CacheEvict(value = Cache.BOOK_PAGE,allEntries = true)
+    @CacheEvict(value = Cache.BOOK_PAGE, allEntries = true)
     @DeleteMapping("/{isbn}")
     public Result<String> deleteBookByIsbn(@PathVariable String isbn) {
         log.debug("isbn:{}", isbn);
@@ -57,9 +57,10 @@ public class BookController {
 
     /**
      * 添加图书
+     * @param book 图书信息
      */
     @PostMapping("/add")
-    @CacheEvict(value = Cache.BOOK_PAGE,allEntries = true)
+    @CacheEvict(value = Cache.BOOK_PAGE, allEntries = true)
     public Result<String> addBook(@RequestBody Book book) {
         log.debug("book:{}", book);
 
@@ -67,10 +68,11 @@ public class BookController {
     }
 
     /**
-     * 更新图书信息
+     * 根据isbn更新图书信息
+     * @param book 更新后图书信息
      */
     @PutMapping
-    @CacheEvict(value = Cache.BOOK_PAGE,allEntries = true)
+    @CacheEvict(value = Cache.BOOK_PAGE, allEntries = true)
     public Result<String> updateBook(@RequestBody Book book) {
         log.debug("book:{}", book);
 

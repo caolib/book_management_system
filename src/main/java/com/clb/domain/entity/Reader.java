@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * 读者类
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

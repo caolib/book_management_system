@@ -21,7 +21,7 @@ public class LoginController {
 
     /**
      * 读者登录
-     * @param reader 读者
+     * @param reader 用户名、密码
      * @return 返回
      */
     @PostMapping ("/login")
@@ -32,6 +32,7 @@ public class LoginController {
 
     /**
      * 用户注册
+     * @param reader 用户注册信息
      */
     @PostMapping("/register")
     public Result<String> register(@RequestBody Reader reader) {

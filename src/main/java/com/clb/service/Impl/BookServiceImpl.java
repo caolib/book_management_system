@@ -45,10 +45,10 @@ public class BookServiceImpl implements BookService {
         // 分页
         Page<Book> bookPage = bookMapper.selectPage(new Page<>(currentPage, pageSize), queryWrapper);
 
-        List<Book> records = bookPage.getRecords();
-        long total = bookPage.getTotal();
+        //List<Book> records = bookPage.getRecords();
+        //log.info("records:{}", records);
 
-        log.info("records:{}", records);
+        long total = bookPage.getTotal();
         log.info("total:{}", total);
 
         return bookPage;

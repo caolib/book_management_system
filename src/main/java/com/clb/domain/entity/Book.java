@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * 书籍类
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

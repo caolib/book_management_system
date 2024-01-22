@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * 分页查询条件
+ */
 @Data
 public class Condition implements Serializable {
     private String bookName;

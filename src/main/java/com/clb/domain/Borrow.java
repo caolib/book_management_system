@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.sql.Date;
 
+/**
+ * 借阅记录
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -1,10 +1,8 @@
 package com.clb.service.Impl;
 
-import com.clb.constant.Excep;
 import com.clb.domain.Borrow;
 import com.clb.domain.Result;
 import com.clb.domain.vo.BorrowVo;
-import com.clb.exception.BaseException;
 import com.clb.mapper.BookMapper;
 import com.clb.mapper.BorrowMapper;
 import com.clb.service.BorrowService;
@@ -73,7 +71,7 @@ public class BorrowServiceImpl implements BorrowService {
 
     /**
      * 读者归还图书，向借阅表中插入归还日期，同时更新图书的库存量
-     * 使用@Transactional让方法以事务方式执行
+     * 使用@Transactional注解，让方法以事务方式执行，保证两个操作同时完成
      */
     @Transactional
     @Override

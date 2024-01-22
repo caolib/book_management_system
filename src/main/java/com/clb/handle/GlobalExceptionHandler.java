@@ -54,8 +54,8 @@ public class GlobalExceptionHandler {
     public Result<String> exceptionHandler(SocketException socketException) {
         String message = socketException.getMessage();
         if (message.contains("Connection reset")) {
-            log.error(message + "redis未连接...");
-            return Result.error("redis未连接...");
+            log.error(message + " redis未连接...");
+            return Result.error(" redis未连接...");
         }
         log.error("检查redis是否开启 " + message);
         return Result.error(message + " 检查redis是否连接");
@@ -70,6 +70,9 @@ public class GlobalExceptionHandler {
         } else if (message.contains("invalid password")) {
             log.error(message+" redis密码错误");
             return Result.error("redis密码错误!");
+        } else if (message.contains("NOAUTH HELLO")) {
+            log.error("先为redis配置密码 " + message);
+            return Result.error("redis未认证!");
         } else {
             log.error(message);
             return Result.error(Excep.UNKNOWN_ERROR);

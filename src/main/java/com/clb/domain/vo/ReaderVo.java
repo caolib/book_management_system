@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * 读者视图对象，包含token
+ */
 @Data
 public class ReaderVo implements Serializable {
     private String id;

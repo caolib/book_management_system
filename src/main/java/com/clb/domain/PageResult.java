@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * 分页返回结果
+ * @param <T> 返回数据的类型，泛型
+ */
 @Data
 public class PageResult<T> implements Serializable {
     Integer code;

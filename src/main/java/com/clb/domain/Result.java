@@ -4,6 +4,11 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * 统一的返回结果对象
+ * @param <T> 返回的数据类型，泛型
+ */
+
 @Data
 public class Result<T> implements Serializable {
     Integer code;

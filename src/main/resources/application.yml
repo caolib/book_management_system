@@ -11,21 +11,23 @@ spring:
   # mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/java_design
+    url: jdbc:mysql://localhost:3306/java_design?serverTimezone=Asia/Shanghai
     username: root
     password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
 
   # redis
   data:
     redis:
-      host: 192.168.0.88
-#      host: localhost
+      host: localhost
       password: 123456
       port: 6379
       database: 0
-  # 是否使用缓存
-  #cache:
-    #type: none
+      timeout: 5000ms
+  cache:
+    type: redis  # 不使用改为none
+    redis:
+      time-to-live: 3600000 # 缓存过期时间,单位ms(此处一小时)
 
   # 热重载排除advice文件
   devtools:
@@ -34,7 +36,7 @@ spring:
   # 支持控制台ansi颜色输出,乱码则禁止这项
   output:
     ansi:
-      enabled: detect
+      enabled: always
 
 # 日志
 logging:
