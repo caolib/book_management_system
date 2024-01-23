@@ -8,22 +8,8 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
 
 spring:
-  # mysql
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/java_design?serverTimezone=Asia/Shanghai
-    username: root
-    password: 123456
-    type: com.alibaba.druid.pool.DruidDataSource
-
-  # redis
-  data:
-    redis:
-      host: localhost
-      password: 123456
-      port: 6379
-      database: 0
-      timeout: 5000ms
+  profiles:
+    active: dev # 可切换为pro,需要修改pro.yml文件相关配置
   cache:
     type: redis  # 不使用改为none
     redis:

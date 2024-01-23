@@ -1,6 +1,8 @@
 HELP.md
 target/
 
+/src/main/resources/application-pro.yml
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -32,4 +34,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
