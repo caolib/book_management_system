@@ -31,7 +31,7 @@ public class BookController {
     @PostMapping
     @Cacheable(cacheNames = Cache.BOOK_PAGE)
     public PageResult<List<Book>> getBookPage(@RequestBody Condition condition) {
-        log.info("查询条件:{}", condition);
+        log.debug("查询条件:{}", condition);
 
         Page<Book> bookPage = bookService.getBookPage(condition);
 

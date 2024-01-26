@@ -17,4 +17,11 @@ spring:
       password: 123456
       port: 6379
       database: 0
-      timeout: 5000ms
+
+# 日志
+logging:
+  level:
+    com.clb: debug
+
+  pattern:
+    dateformat: MM-dd HH:mm:ss.SSS

@@ -41,17 +41,8 @@ public class BookServiceImpl implements BookService {
                 .eq(MyUtils.StrUtil(isbn), Book::getIsbn, isbn)
                 .like(MyUtils.StrUtil(bookName), Book::getTitle, bookName)
                 .like(MyUtils.StrUtil(author), Book::getAuthor, author);
-
-        // 分页
-        Page<Book> bookPage = bookMapper.selectPage(new Page<>(currentPage, pageSize), queryWrapper);
-
-        //List<Book> records = bookPage.getRecords();
-        //log.info("records:{}", records);
-
-        long total = bookPage.getTotal();
-        log.info("total:{}", total);
-
-        return bookPage;
+        // 分页查询
+        return bookMapper.selectPage(new Page<>(currentPage, pageSize), queryWrapper);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.clb.service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.clb.constant.Common;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
 import com.clb.domain.dto.LoginDto;
@@ -39,12 +40,13 @@ public class ReaderServiceImpl implements ReaderService {
             return Result.error(Excep.WRONG_PASSWORD);
         }
 
-        //生成令牌
+        //生成令牌,在有效载荷中存储用户名和id
         Map<String, Object> claims = new HashMap<>();
-        claims.put("username", reader.getUsername());
+        claims.put(Common.ID, r.getId());
+        claims.put(Common.USERNAME, reader.getUsername());
         String token = JwtUtils.generateJwt(claims);
 
-        // 封装信息
+        // 封装信息并返回
         ReaderVo readerVo = new ReaderVo();
         readerVo.setToken(token);
         BeanUtils.copyProperties(r, readerVo);

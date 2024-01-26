@@ -31,7 +31,7 @@ public class Advice {
         }
         long time = System.currentTimeMillis() - start;
 
-        log.info("[耗时:{}ms {}]", time, name);
+        log.debug("[耗时:{}ms {}]", time, name);
 
         return result;
     }

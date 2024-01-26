@@ -9,9 +9,9 @@ import java.util.List;
 public interface BorrowService {
 
 
-    Result<List<BorrowVo>> getBorrowByReaderId(Integer readerId);
+    Result<List<BorrowVo>> getBorrowByReaderId();
 
-    Result<String> borrow(String isbn, Integer readerId, Date dueDate);
+    Result<String> borrow(String isbn, Date dueDate);
 
     Result<String> returnBook(Integer id,String isbn);
 

@@ -6,6 +6,8 @@ mybatis-plus:
     map-underscore-to-camel-case: true
   type-aliases-package: com.clb.domain
   mapper-locations: classpath:mapper/*.xml
+  global-config:
+    banner: off
 
 spring:
   profiles:
@@ -23,10 +25,3 @@ spring:
   output:
     ansi:
       enabled: always
-
-# 日志
-logging:
-  level:
-    com.clb: debug
-  pattern:
-    dateformat: MM-dd HH:mm:ss.SSS

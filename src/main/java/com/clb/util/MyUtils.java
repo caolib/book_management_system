@@ -39,5 +39,8 @@ public class MyUtils {
         return Date.valueOf(LocalDate.now());
     }
 
+    public static Integer objToInt(Object object) {
+        return Integer.parseInt((String) object);
+    }
 
 }

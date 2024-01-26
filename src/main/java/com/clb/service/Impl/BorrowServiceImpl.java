@@ -1,5 +1,6 @@
 package com.clb.service.Impl;
 
+import com.clb.constant.Common;
 import com.clb.domain.Borrow;
 import com.clb.domain.Result;
 import com.clb.domain.vo.BorrowVo;
@@ -7,6 +8,7 @@ import com.clb.mapper.BookMapper;
 import com.clb.mapper.BorrowMapper;
 import com.clb.service.BorrowService;
 import com.clb.util.MyUtils;
+import com.clb.util.ThreadLocalUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -26,10 +29,14 @@ public class BorrowServiceImpl implements BorrowService {
     private final BookMapper bookMapper;
 
     @Override
-    public Result<List<BorrowVo>> getBorrowByReaderId(Integer readerId) {
+    public Result<List<BorrowVo>> getBorrowByReaderId() {
+        Map<String, Object> reader = ThreadLocalUtil.get();
+        log.debug("用户:{}", reader);
+        Integer readerId = MyUtils.objToInt(reader.get(Common.ID));
+
         List<Borrow> borrows = borrowMapper.selectByReaderId(readerId);
         List<BorrowVo> result = new ArrayList<>();
-        //拷贝到结果
+        //拷贝结果到vo
         borrows.forEach(borrow -> {
             BorrowVo borrowVo = new BorrowVo();
             BeanUtils.copyProperties(borrow, borrowVo);
@@ -52,19 +59,22 @@ public class BorrowServiceImpl implements BorrowService {
      */
     @Transactional
     @Override
-    public Result<String> borrow(String isbn, Integer readerId, Date dueDate) {
+    public Result<String> borrow(String isbn, Date dueDate) {
+        Map<String, Object> reader = ThreadLocalUtil.get();
+        String readerId = (String) reader.get(Common.ID);
+
         // 向借阅表中插入借阅记录
         Borrow borrow = Borrow.builder()
                 .isbn(isbn)
                 .dueDate(dueDate)
                 .borrowDate(MyUtils.now())
-                .readerId(String.valueOf(readerId))
+                .readerId(readerId)
                 .build();
 
         borrowMapper.insert(borrow);
 
         // 更新图书库存-1
-        bookMapper.updateNumberByIsbn(isbn,-1);
+        bookMapper.updateNumberByIsbn(isbn, -1);
 
         return Result.success();
     }
@@ -75,7 +85,7 @@ public class BorrowServiceImpl implements BorrowService {
      */
     @Transactional
     @Override
-    public Result<String> returnBook(Integer id,String isbn) {
+    public Result<String> returnBook(Integer id, String isbn) {
         //更新借阅表中信息
         borrowMapper.updateReturnDateById(id, MyUtils.now());
         //同时更新图书库存+1
