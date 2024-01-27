@@ -7,10 +7,12 @@ import com.clb.service.ReaderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 @Slf4j
 @RestController
 @RequestMapping("/reader")
@@ -37,7 +39,7 @@ public class ReaderController {
      */
     @PostMapping("/update")
     @CacheEvict(value = Cache.READER,allEntries = true)
-    public Result<Reader> updateReader(@RequestBody Reader reader) {
+    public Result<Reader> updateReader(@RequestBody @Validated Reader reader) {
         log.info("reader:{}", reader);
         return readerService.updateReader(reader);
     }

@@ -1,5 +1,6 @@
 package com.clb.domain.dto;
 
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,6 +10,8 @@ import java.io.Serializable;
  */
 @Data
 public class LoginDto implements Serializable {
-    String username;
-    String password;
+    @Pattern(regexp = "^\\S{1,10}$")
+    private String username;
+    @Pattern(regexp = "^\\S{1,10}$")
+    private String password;
 }

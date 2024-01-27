@@ -22,5 +22,6 @@ public class Excep {
     public static final String ISBN_NOT_EXIST = "isbn不存在！";
     public static final String TITLE_IS_NULL = "书名不能为空！";
     public static final String BOOK_NUMBER_ERROR = "书本库存量只能为非负数！";
+    public static final String ARG_NOT_VALID = "方法参数非法！";
 
 }

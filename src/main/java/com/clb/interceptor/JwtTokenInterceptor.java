@@ -33,6 +33,7 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
 
         //token为空,不放行
         String token = request.getHeader(Common.TOKEN);
+        log.debug("token:{}",token);
         if (!StringUtils.hasLength(token)) {
             log.error(Excep.TOKEN_NOT_EXIST);
             response.setStatus(Code.NOT_LOGIN_CODE);

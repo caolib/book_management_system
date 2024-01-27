@@ -7,15 +7,17 @@ import com.clb.domain.vo.ReaderVo;
 import com.clb.service.ReaderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping("/reader")
 @RequiredArgsConstructor
-@Slf4j
+@Validated
 public class LoginController {
     private final ReaderService readerService;
 
@@ -25,7 +27,7 @@ public class LoginController {
      * @return 返回
      */
     @PostMapping ("/login")
-    public Result<ReaderVo> login(@RequestBody LoginDto reader) {
+    public Result<ReaderVo> login(@RequestBody @Validated LoginDto reader) {
         log.debug("reader:{}",reader);
         return readerService.login(reader);
     }
@@ -35,7 +37,7 @@ public class LoginController {
      * @param reader 用户注册信息
      */
     @PostMapping("/register")
-    public Result<String> register(@RequestBody Reader reader) {
+    public Result<String> register(@RequestBody @Validated Reader reader) {
         log.debug("register-reader:{}", reader);
 
         return readerService.register(reader);

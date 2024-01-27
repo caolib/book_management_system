@@ -8,10 +8,12 @@ import com.clb.domain.Result;
 import com.clb.domain.dto.Condition;
 import com.clb.domain.entity.Book;
 import com.clb.service.BookService;
+import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/book")
 @RequiredArgsConstructor
+@Validated
 public class BookController {
     private final BookService bookService;
 
@@ -48,7 +51,7 @@ public class BookController {
      */
     @CacheEvict(value = Cache.BOOK_PAGE, allEntries = true)
     @DeleteMapping("/{isbn}")
-    public Result<String> deleteBookByIsbn(@PathVariable String isbn) {
+    public Result<String> deleteBookByIsbn(@PathVariable @Pattern(regexp = "^\\S{1,20}$\n") String isbn) {
         log.debug("isbn:{}", isbn);
 
         bookService.deleteBookByIsbn(isbn);

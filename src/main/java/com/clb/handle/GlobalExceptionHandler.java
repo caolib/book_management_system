@@ -5,6 +5,7 @@ import com.clb.domain.Result;
 import com.clb.exception.BaseException;
 import io.lettuce.core.RedisCommandExecutionException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -77,6 +78,13 @@ public class GlobalExceptionHandler {
             log.error(message);
             return Result.error(Excep.UNKNOWN_ERROR);
         }
+    }
+
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Result<String> MethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        log.error(Excep.ARG_NOT_VALID+e.getMessage());
+        return Result.error(Excep.ARG_NOT_VALID);
     }
 
 }
