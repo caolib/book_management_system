@@ -2,6 +2,7 @@ package com.clb.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.clb.annotation.MyController;
 import com.clb.constant.Cache;
 import com.clb.domain.PageResult;
 import com.clb.domain.Result;
@@ -19,8 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@RestController
-@RequestMapping("/book")
+@MyController(prefix = "/book")
 @RequiredArgsConstructor
 @Validated
 public class BookController {
@@ -51,7 +51,7 @@ public class BookController {
      */
     @CacheEvict(value = Cache.BOOK_PAGE, allEntries = true)
     @DeleteMapping("/{isbn}")
-    public Result<String> deleteBookByIsbn(@PathVariable @Pattern(regexp = "^\\S{1,20}$\n") String isbn) {
+    public Result<String> deleteBookByIsbn(@PathVariable @Pattern(regexp = "^\\S{1,20}$") String isbn) {
         log.debug("isbn:{}", isbn);
 
         bookService.deleteBookByIsbn(isbn);
@@ -60,6 +60,7 @@ public class BookController {
 
     /**
      * 添加图书
+     *
      * @param book 图书信息
      */
     @PostMapping("/add")
@@ -72,6 +73,7 @@ public class BookController {
 
     /**
      * 根据isbn更新图书信息
+     *
      * @param book 更新后图书信息
      */
     @PutMapping

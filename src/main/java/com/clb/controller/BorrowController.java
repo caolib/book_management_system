@@ -1,5 +1,6 @@
 package com.clb.controller;
 
+import com.clb.annotation.MyController;
 import com.clb.constant.Cache;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
@@ -9,14 +10,16 @@ import com.clb.service.BorrowService;
 import com.clb.util.MyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.sql.Date;
 import java.util.List;
 
 @Slf4j
-@RestController
-@RequestMapping("/borrow")
+@MyController(prefix = "/borrow")
 public class BorrowController {
     private final BorrowService borrowService;
 
@@ -55,13 +58,13 @@ public class BorrowController {
     /**
      * 用户借阅图书
      *
-     * @param isbn     书号
-     * @param dueDate  应归还日期
+     * @param isbn    书号
+     * @param dueDate 应归还日期
      */
     @GetMapping("/borrowBook")
     @CacheEvict(value = Cache.BOOK_PAGE, allEntries = true)
     public Result<String> borrow(String isbn, String dueDate) {
-        log.info("isbn:{} dueDate:{}", isbn,  dueDate);
+        log.info("isbn:{} dueDate:{}", isbn, dueDate);
 
         if (!MyUtils.StrUtil(dueDate)) {
             throw new BaseException(Excep.RETURN_DATE_IS_NULL);
