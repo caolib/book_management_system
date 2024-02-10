@@ -22,6 +22,7 @@ spring:
   devtools:
     restart:
       additional-exclude: com/clb/util/Advice.class
+
   # 支持控制台ansi颜色输出,乱码则禁止这项
   output:
     ansi:

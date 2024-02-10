@@ -11,12 +11,10 @@ import com.clb.util.MyUtils;
 import com.clb.util.ThreadLocalUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,31 +22,20 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 public class BorrowServiceImpl implements BorrowService {
-
     private final BorrowMapper borrowMapper;
     private final BookMapper bookMapper;
 
+    /**
+     * 根据用户id查询借书记录
+     */
     @Override
     public Result<List<BorrowVo>> getBorrowByReaderId() {
+        // 从ThreadLocal中获取用户id
         Map<String, Object> reader = ThreadLocalUtil.get();
         log.debug("用户:{}", reader);
         Integer readerId = MyUtils.objToInt(reader.get(Common.ID));
 
-        List<Borrow> borrows = borrowMapper.selectByReaderId(readerId);
-        List<BorrowVo> result = new ArrayList<>();
-        //拷贝结果到vo
-        borrows.forEach(borrow -> {
-            BorrowVo borrowVo = new BorrowVo();
-            BeanUtils.copyProperties(borrow, borrowVo);
-            result.add(borrowVo);
-        });
-
-        //根据isbn查询所有图书书名
-        for (BorrowVo borrowVo : result) {
-            String isbn = borrowVo.getIsbn();
-            borrowVo.setBookName(bookMapper.getTitleByIsbn(isbn));
-            borrowVo.setStatus(borrowVo.getReturnDate() != null);
-        }
+        List<BorrowVo> result = borrowMapper.selectByReaderId(readerId);
 
         return Result.success(result);
     }

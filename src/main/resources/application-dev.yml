@@ -22,6 +22,12 @@ spring:
 logging:
   level:
     com.clb: debug
-
   pattern:
-    dateformat: MM-dd HH:mm:ss.SSS
+    dateformat: "yy/MM-dd HH:mm:ss.SSS"
+  # 日志写入到文件
+#  file:
+#    name: book-server.log
+#  logback:
+#    rolling-policy:
+#      max-file-size: 5MB
+#      max-history: 3

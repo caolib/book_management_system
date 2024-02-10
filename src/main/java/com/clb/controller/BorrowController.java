@@ -22,7 +22,6 @@ import java.util.List;
 @MyController(prefix = "/borrow")
 public class BorrowController {
     private final BorrowService borrowService;
-
     public BorrowController(BorrowService borrowService) {
         this.borrowService = borrowService;
     }
@@ -34,26 +33,6 @@ public class BorrowController {
     public Result<List<BorrowVo>> getBorrowByReaderId() {
         return borrowService.getBorrowByReaderId();
     }
-
-    ///**
-    // * 用户借阅图书
-    // *
-    // * @param isbn     书号
-    // * @param readerId 读者号
-    // * @param dueDate  应归还日期
-    // */
-    //@GetMapping("/borrowBook")
-    //@CacheEvict(value = Cache.BOOK_PAGE, allEntries = true)
-    //public Result<String> borrow(String isbn, Integer readerId, String dueDate) {
-    //    log.info("isbn:{} readerId:{} dueDate:{}", isbn, readerId, dueDate);
-    //
-    //    if (!MyUtils.StrUtil(dueDate)) {
-    //        throw new BaseException(Excep.RETURN_DATE_IS_NULL);
-    //    }
-    //
-    //    Date date = MyUtils.StrToDate(dueDate);
-    //    return borrowService.borrow(isbn, readerId, date);
-    //}
 
     /**
      * 用户借阅图书
