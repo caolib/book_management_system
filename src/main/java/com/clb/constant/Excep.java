@@ -11,6 +11,7 @@ public class Excep {
     public static final String WRONG_PASSWORD = "密码错误!";
     public static final String NOT_LOGIN = "未登录!";
     public static final String TOKEN_NOT_EXIST = "令牌不存在!";
+    public static final String TOKEN_ALREADY_EXPIRED = "令牌已过期!";
     public static final String USER_ALREADY_EXIST = "用户已存在！";
     public static final String DATE_FORMAT_ERROR = "日期格式错误！";
     public static final String DATE_IS_NULL = "日期不能为空！";

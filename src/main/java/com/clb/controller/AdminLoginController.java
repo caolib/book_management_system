@@ -1,6 +1,5 @@
 package com.clb.controller;
 
-import com.clb.annotation.MyController;
 import com.clb.domain.Result;
 import com.clb.domain.dto.LoginDto;
 import com.clb.domain.entity.Admin;
@@ -11,8 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@MyController(prefix = "/admin")
+@RestController
+@RequestMapping("/admin")
 @RequiredArgsConstructor
 @Slf4j
 @Validated

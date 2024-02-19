@@ -21,6 +21,8 @@ public class BorrowVo implements Serializable {
     private Date borrowDate;
     private Date returnDate;
     private Date dueDate;
-    //true归还，false未归还
+    /**
+     * true归还，false未归还
+     */
     private Boolean status;
 }

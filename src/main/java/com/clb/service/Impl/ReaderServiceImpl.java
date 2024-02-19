@@ -3,6 +3,7 @@ package com.clb.service.Impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.clb.constant.Common;
 import com.clb.constant.Excep;
+import com.clb.constant.Jwt;
 import com.clb.domain.Result;
 import com.clb.domain.dto.LoginDto;
 import com.clb.domain.entity.Reader;
@@ -15,6 +16,7 @@ import com.clb.util.JwtUtils;
 import com.clb.util.MyUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -26,6 +28,8 @@ import java.util.Map;
 public class ReaderServiceImpl implements ReaderService {
 
     private final ReaderMapper readerMapper;
+
+    private final StringRedisTemplate redisTemplate;
 
     @Override
     public Result<ReaderVo> login(LoginDto reader) {
@@ -45,6 +49,9 @@ public class ReaderServiceImpl implements ReaderService {
         claims.put(Common.ID, r.getId());
         claims.put(Common.USERNAME, reader.getUsername());
         String token = JwtUtils.generateJwt(claims);
+
+        // 将令牌保存到redis中
+        redisTemplate.opsForValue().set(token, token, Jwt.EXPIRE_TIME);
 
         // 封装信息并返回
         ReaderVo readerVo = new ReaderVo();

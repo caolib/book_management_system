@@ -2,7 +2,6 @@ package com.clb.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.clb.annotation.MyController;
 import com.clb.constant.Cache;
 import com.clb.domain.PageResult;
 import com.clb.domain.Result;
@@ -20,7 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@MyController(prefix = "/book")
+@RestController
+@RequestMapping("/book")
 @RequiredArgsConstructor
 @Validated
 public class BookController {

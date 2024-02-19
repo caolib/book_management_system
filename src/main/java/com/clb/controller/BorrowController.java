@@ -1,6 +1,5 @@
 package com.clb.controller;
 
-import com.clb.annotation.MyController;
 import com.clb.constant.Cache;
 import com.clb.constant.Excep;
 import com.clb.domain.Result;
@@ -10,16 +9,14 @@ import com.clb.service.BorrowService;
 import com.clb.util.MyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.util.List;
 
 @Slf4j
-@MyController(prefix = "/borrow")
+@RestController
+@RequestMapping("/borrow")
 public class BorrowController {
     private final BorrowService borrowService;
     public BorrowController(BorrowService borrowService) {

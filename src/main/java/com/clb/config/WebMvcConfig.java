@@ -27,7 +27,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         //注册自定义拦截器对象,不拦截登录注册请求
         registry.addInterceptor(jwtTokenInterceptor)
-                .excludePathPatterns("/**/login", "/**/register","/error")
+                .excludePathPatterns("/**/login", "/**/register","/error","/**logout")
                 .order(10);
 
         registry.addInterceptor(loggingInterceptor)

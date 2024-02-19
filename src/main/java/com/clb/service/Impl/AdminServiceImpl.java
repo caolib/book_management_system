@@ -1,6 +1,7 @@
 package com.clb.service.Impl;
 
 import com.clb.constant.Excep;
+import com.clb.constant.Jwt;
 import com.clb.domain.Result;
 import com.clb.domain.dto.LoginDto;
 import com.clb.domain.entity.Admin;
@@ -13,6 +14,7 @@ import com.clb.util.JwtUtils;
 import com.clb.util.MyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -24,8 +26,11 @@ import java.util.Objects;
 public class AdminServiceImpl implements AdminService {
     private final AdminMapper adminMapper;
 
-    public AdminServiceImpl(AdminMapper adminMapper) {
+    private final StringRedisTemplate redisTemplate;
+
+    public AdminServiceImpl(AdminMapper adminMapper,StringRedisTemplate redisTemplate) {
         this.adminMapper = adminMapper;
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
@@ -46,6 +51,9 @@ public class AdminServiceImpl implements AdminService {
         Map<String, Object> claims = new HashMap<>();
         claims.put("username", admin.getUsername());
         String token = JwtUtils.generateJwt(claims);
+
+        // 将令牌保存到redis中
+        redisTemplate.opsForValue().set(token, token, Jwt.EXPIRE_TIME);
 
         // 封装信息
         AdminVo adminVo = new AdminVo();

@@ -1,6 +1,5 @@
 package com.clb.controller;
 
-import com.clb.annotation.MyController;
 import com.clb.constant.Cache;
 import com.clb.domain.Result;
 import com.clb.domain.entity.Reader;
@@ -9,16 +8,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Validated
 @Slf4j
-@MyController(prefix = "/reader")
+@RestController
+@RequestMapping("/reader")
 public class ReaderController {
     private final ReaderService readerService;
 

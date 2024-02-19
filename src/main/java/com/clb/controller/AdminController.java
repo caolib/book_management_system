@@ -1,6 +1,5 @@
 package com.clb.controller;
 
-import com.clb.annotation.MyController;
 import com.clb.domain.Result;
 import com.clb.domain.entity.Admin;
 import com.clb.service.AdminService;
@@ -8,8 +7,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@MyController(prefix = "/admin")
+@RestController
+@RequestMapping("/admin")
 @RequiredArgsConstructor
 @Slf4j
 public class AdminController {
