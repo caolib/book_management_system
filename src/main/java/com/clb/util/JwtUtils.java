@@ -7,7 +7,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.Map;
+
+
 
 @Component
 @Slf4j
@@ -22,7 +25,7 @@ public class JwtUtils {
         return Jwts.builder()
                 .addClaims(claims)
                 .signWith(SignatureAlgorithm.HS256, Jwt.SIGNKEY)
-                .setExpiration(Jwt.EXPIRE)
+                .setExpiration(new Date(System.currentTimeMillis() + Jwt.EXPIRE_TIME))
                 .compact();
     }
 
