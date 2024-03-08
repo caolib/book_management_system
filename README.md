@@ -2,7 +2,7 @@
 
 &emsp;&emsp;
 ![GitHub Release](https://img.shields.io/github/v/release/TankingCao/java_design)
-![springboot](https://img.shields.io/badge/springboot-v3.0.9-%236DB33F?style=flat&logo=springboot&logoColor=white)
+![springboot](https://img.shields.io/badge/springboot-v3.0.9-%236DB33F?style=flat&logo=springboot&logoColor=236DB33F)
 ![maven](https://img.shields.io/badge/Maven-v3.9.5-blue?style=flat&logo=apachemaven&logoColor=red)
 ![mybatisplus](https://img.shields.io/badge/MybatisPlus-v3.5.3.1-red?style=flat)
 ![mysql](https://img.shields.io/badge/MySQL-v8.2.0-blue?style=flat&logo=mysql&logoColor=blue)
