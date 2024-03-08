@@ -1,18 +1,15 @@
-# 图书借阅管理系统
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=cascadia+code&size=38&duration=3500&pause=1000&color=00ADFF&center=true&vCenter=true&random=false&width=1000&height=100&lines=Book+lending+management+system;图书借阅管理系统)](https://git.io/typing-svg)
+
+&emsp;&emsp;
+![springboot](https://img.shields.io/badge/springboot-v3.0.9-%236DB33F?style=flat&logo=springboot&logoColor=white)
+![maven](https://img.shields.io/badge/Maven-v3.9.5-blue?style=flat&logo=apachemaven&logoColor=red)
+![mybatisplus](https://img.shields.io/badge/MybatisPlus-v3.5.3.1-red?style=flat)
+![mysql](https://img.shields.io/badge/MySQL-v8.2.0-blue?style=flat&logo=mysql&logoColor=blue)
+![redis](https://img.shields.io/badge/Redis-v7.0.12-red?style=flat&logo=redis&logoColor=%23DC382D)
 
 > 这是后端项目，对应的前端地址为:[TankingCao/vue3-vite](https://github.com/TankingCao/vue3-vite)
-
-## 相关技术和环境
-
+> 
 > 使用`SpringBoot+Mybatis/Mybatis-Plus`框架制作的一个简单的图书借阅管理系统
-
-|   相关技术   |  版本   |
-| :----------: | :-----: |
-|  SpringBoot  |  3.0.9  |
-|    Maven     |  3.9.5  |
-| Mybatis-Plus | 3.5.3.1 |
-|    MySQL     |  8.2.0  |
-|    Redis     | 7.0.12  |
 
 注意事项：
 
