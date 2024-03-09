@@ -1,7 +1,6 @@
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=cascadia+code&size=38&duration=3500&pause=1000&color=00ADFF&center=true&vCenter=true&random=false&width=1000&height=100&lines=Book+lending+management+system;图书借阅管理系统)](https://git.io/typing-svg)
 
 &emsp;&emsp;
-![GitHub Release](https://img.shields.io/github/v/release/TankingCao/java_design)
 ![springboot](https://img.shields.io/badge/springboot-v3.0.9-%236DB33F?style=flat&logo=springboot&logoColor=236DB33F)
 ![maven](https://img.shields.io/badge/Maven-v3.9.5-blue?style=flat&logo=apachemaven&logoColor=red)
 ![mybatisplus](https://img.shields.io/badge/MybatisPlus-v3.5.3.1-red?style=flat)
