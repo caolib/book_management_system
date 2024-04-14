@@ -13,7 +13,7 @@
 
 > [!important]
 >
-> **这是后端项目，对应的前端地址为:[TankingCao/vue3-vite](https://github.com/TankingCao/vue3-vite)**
+> **这是后端项目，对应的[前端项目地址](https://github.com/caolib/vue3-vite)**
 
 > [!caution]
 >
