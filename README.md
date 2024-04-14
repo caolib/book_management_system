@@ -8,16 +8,21 @@
 ![mysql](https://img.shields.io/badge/MySQL-v8.2.0-blue?style=flat&logo=mysql&logoColor=blue)
 ![redis](https://img.shields.io/badge/Redis-v7.0.12-red?style=flat&logo=redis&logoColor=%23DC382D)
 
-> 这是后端项目，对应的前端地址为:[TankingCao/vue3-vite](https://github.com/TankingCao/vue3-vite)
-> 
-> 使用`SpringBoot+Mybatis/Mybatis-Plus`框架制作的一个简单的图书借阅管理系统
 
-注意事项：
+使用`SpringBoot+Mybatis/Mybatis-Plus`框架制作的一个简单的图书借阅管理系统
 
-- 最近更新中因为使用`redis`二次校验token实现token主动过期，`redis`变成必需项!!!
-- 使用前先使用maven下载相关依赖，建议使用IDEA编译器，捆绑了maven，可以直接使用
-- 在发行版的资源中有此项目对应的数据库结构的`sql`文件
-- 注意前后端一般是同时修改的，必须匹配，没有特别需求（不想使用redis）直接使用最新的
+> [!important]
+>
+> **这是后端项目，对应的前端地址为:[TankingCao/vue3-vite](https://github.com/TankingCao/vue3-vite)**
+
+> [!caution]
+>
+> 注意事项：
+>
+> - **最近更新中因为使用`redis`二次校验token实现token主动过期，`redis`变成必需项!!!**
+> - 使用前先使用maven下载相关依赖，建议使用IDEA编译器，捆绑了maven，可以直接使用
+> - 在发行版的资源中有此项目对应的数据库结构的`sql`文件
+> - 注意前后端一般是同时修改的，必须匹配，没有特别需求（不想使用redis）直接使用最新的
 
 ## 快速使用
 
