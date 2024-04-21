@@ -13,14 +13,14 @@
 
 > [!important]
 >
-> **这是后端项目，对应的[前端项目地址](https://github.com/caolib/vue3-vite)**
+> **项目采用前后端分离开发，这是后端项目，对应的[前端项目地址](https://github.com/caolib/vue3-vite)，注意相关技术栈版本不要相差太大**
 
 > [!caution]
 >
-> 注意事项：
->
 > - **最近更新中因为使用`redis`二次校验token实现token主动过期，`redis`变成必需项!!!**
-> - 在发行版的资源中有此项目对应的数据库结构的`sql`文件
+> - **在[发行版](https://github.com/caolib/book_management_system/releases)的资源中有此项目对应的数据库结构的`sql`文件**
+
+> [!tip]
 > - 使用前先使用maven下载相关依赖，建议使用IDEA编译器，捆绑了maven，可以直接使用
 > - 注意前后端一般是同时修改的，必须匹配版本，没有特别需求（不想使用redis）直接使用最新的
 
@@ -122,7 +122,7 @@ java -jar .\book-1.0.0.RELEASE.jar
 java -jar .\book-1.0.0.RELEASE.jar --server.port=8081
 ```
 
-> 也可以关闭redis
+> ~也可以关闭redis~
 
 ```cmd
 java -jar .\book-1.0.0.RELEASE.jar --server.port=8081 --spring.cache.type=none
