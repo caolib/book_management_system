@@ -9,6 +9,11 @@
 ![redis](https://img.shields.io/badge/Redis-v7.0.12-red?style=flat&logo=redis&logoColor=%23DC382D)
 
 
+![opened issues](https://img.shields.io/github/issues/caolib/book_management_system?color=red&cacheSeconds=3600)
+![closed issues](https://img.shields.io/github/issues-closed/caolib/book_management_system?color=green&cacheSeconds=3600)
+
+
+
 使用`SpringBoot+Mybatis/Mybatis-Plus`框架制作的一个简单的图书借阅管理系统
 
 > [!important]
