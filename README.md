@@ -8,11 +8,12 @@
 ![mysql](https://img.shields.io/badge/MySQL-v8.2.0-blue?style=flat&logo=mysql&logoColor=blue&labelColor=white)
 ![redis](https://img.shields.io/badge/Redis-v7.0.12-red?style=flat&logo=redis&logoColor=%23DC382D&labelColor=white)
 ![GitHub Release](https://img.shields.io/github/v/release/tankingcao/java_design?include_prereleases&sort=date&display_name=release&style=flat&labelColor=red&cacheSeconds=3600)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/caolib/book_management_system?labelColor=red)
+
 <!-- 
 ![GitHub License](https://img.shields.io/github/license/caolib/book_management_system?style=flat)
 ![opened issues](https://img.shields.io/github/issues/caolib/book_management_system?color=red&cacheSeconds=3600)
 ![closed issues](https://img.shields.io/github/issues-closed/caolib/book_management_system?color=green&cacheSeconds=3600)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/caolib/book_management_system?labelColor=red)
 -->
 
 ![Alt](https://repobeats.axiom.co/api/embed/fff6dbaa9aa86bbe35a974910b89f89dd10a3383.svg "Repobeats analytics image")
