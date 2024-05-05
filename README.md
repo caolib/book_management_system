@@ -61,14 +61,14 @@ spring:
   # redis
   data:
     redis:
-      # 修改host和密码为你的，如果没有密码则删除password项
+      # 修改host和密码为你的，如果没有密码则删除password项，redis默认没有密码
       host: localhost
       password: 123456
       port: 6379
       database: 0
       timeout: 5000ms
   cache:
-    type: redis  # 不使用redis将此项改为none
+    type: redis  
     redis:
       time-to-live: 3600000 # 缓存过期时间,单位ms(此处一小时)
 
@@ -76,7 +76,7 @@ spring:
   devtools:
     restart:
       additional-exclude: com/clb/util/Advice.class
-  # 支持控制台ansi颜色输出,乱码则禁止这项
+  # 支持控制台ansi颜色输出(使用java命令行部署时),如果乱码则删除下面3行
   output:
     ansi:
       enabled: always
