@@ -18,7 +18,7 @@
 
 ![Alt](https://repobeats.axiom.co/api/embed/fff6dbaa9aa86bbe35a974910b89f89dd10a3383.svg "Repobeats analytics image")
 
-使用`SpringBoot+Mybatis/Mybatis-Plus`框架制作的一个简单的图书借阅管理系统
+使用`springboot+mybatis-plus`框架制作的一个简单的图书借阅管理系统后台服务器
 
 > [!important]
 >
@@ -33,9 +33,9 @@
 > - 使用前先使用maven下载相关依赖，建议使用IDEA编译器，捆绑了maven，可以直接使用
 > - 注意前后端一般是同时修改的，必须匹配版本，没有特别需求（不想使用redis）直接使用最新的
 
-## 快速使用
+## 快速开始
 
-### 1.修改配置文件
+### 1.参照注释修改配置文件
 
 路径：`src/main/resources/application.yml`
 
@@ -95,7 +95,7 @@ logging:
 
 ### 2.启动项目
 
-使用编译器一键启动项目
+使用编译器一键启动项目(前提:mysql和redis数据库配置正确且已经启动)
 
 ## 项目目录结构
 
