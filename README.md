@@ -137,3 +137,5 @@ java -jar .\book-1.0.0.RELEASE.jar --server.port=8081
 java -jar .\book-1.0.0.RELEASE.jar --server.port=8081 --spring.cache.type=none
 ```
 
+> [!tip]
+> 此项目对应的![微服务版本](https://github.com/caolib/cloud-book)
