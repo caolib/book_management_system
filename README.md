@@ -16,8 +16,6 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/caolib/book_management_system?labelColor=red)
 -->
 
-![Alt](https://repobeats.axiom.co/api/embed/fff6dbaa9aa86bbe35a974910b89f89dd10a3383.svg "Repobeats analytics image")
-
 使用`springboot+mybatis-plus`框架制作的一个简单的图书借阅管理系统后台服务器
 
 > [!important]
@@ -139,3 +137,9 @@ java -jar .\book-1.0.0.RELEASE.jar --server.port=8081 --spring.cache.type=none
 
 > [!tip]
 > 此项目对应的[微服务版本](https://github.com/caolib/cloud-book)
+
+## 提交分析
+![Alt](https://repobeats.axiom.co/api/embed/fff6dbaa9aa86bbe35a974910b89f89dd10a3383.svg "Repobeats analytics image")
+
+## Star Histor
+[![Star History Chart](https://api.star-history.com/svg?repos=caolib/book_management_system&type=Date)](https://star-history.com/#caolib/book_management_system&Date)
