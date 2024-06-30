@@ -8,6 +8,7 @@
 ![mysql](https://img.shields.io/badge/MySQL-v8.2.0-blue?style=flat&logo=mysql&logoColor=blue&labelColor=white)
 ![redis](https://img.shields.io/badge/Redis-v7.0.12-red?style=flat&logo=redis&logoColor=%23DC382D&labelColor=white)
 ![GitHub Release](https://img.shields.io/github/v/release/tankingcao/java_design?include_prereleases&sort=date&display_name=release&style=flat&labelColor=red&cacheSeconds=3600)
+![下载量](https://img.shields.io/github/downloads/caolib/book_management_system/total.svg)
 
 <!-- 
 ![GitHub License](https://img.shields.io/github/license/caolib/book_management_system?style=flat)
