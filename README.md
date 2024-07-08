@@ -142,5 +142,6 @@ java -jar .\book-1.0.0.RELEASE.jar --server.port=8081 --spring.cache.type=none
 ## 提交分析
 ![Alt](https://repobeats.axiom.co/api/embed/fff6dbaa9aa86bbe35a974910b89f89dd10a3383.svg "Repobeats analytics image")
 
-## Star Histor
-[![Star History Chart](https://api.star-history.com/svg?repos=caolib/book_management_system&type=Date)](https://star-history.com/#caolib/book_management_system&Date)
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=caolib/book_management_system,caolib/vue3-vite&type=Timeline)](https://star-history.com/#caolib/book_management_system&caolib/vue3-vite&Timeline)
