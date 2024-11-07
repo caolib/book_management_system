@@ -98,6 +98,94 @@ logging:
 
 ## 项目目录结构
 
+📂 .                                                         0 B
+├── 📄 LICENSE                                             1.1 KB
+├── 📄 pom.xml                                             4.5 KB
+├── 📄 README.md                                           5.3 KB
+└── 📂 src                                                   0 B
+    ├── 📂 main                                              0 B
+    │   ├── 📂 java                                          0 B
+    │   │   └── 📂 com                                       0 B
+    │   │       └── 📂 clb                                 4.0 KB
+    │   │           ├── 📂 annotation                        0 B
+    │   │           │   └── 📄 MyController.java           503 B
+    │   │           ├── 📄 BookApplication.java            503 B
+    │   │           ├── 📂 config                            0 B
+    │   │           │   ├── 📄 MybatisConfig.java          784 B
+    │   │           │   ├── 📄 RedisConfig.java            1.0 KB
+    │   │           │   └── 📄 WebMvcConfig.java           1.5 KB
+    │   │           ├── 📂 constant                          0 B
+    │   │           │   ├── 📄 Cache.java                  251 B
+    │   │           │   ├── 📄 Code.java                   209 B
+    │   │           │   ├── 📄 Common.java                 235 B
+    │   │           │   ├── 📄 Excep.java                  1.6 KB
+    │   │           │   └── 📄 Jwt.java                    207 B
+    │   │           ├── 📂 controller                      4.0 KB
+    │   │           │   ├── 📄 AdminController.java        908 B
+    │   │           │   ├── 📄 AdminLoginController.java   1.4 KB
+    │   │           │   ├── 📄 BookController.java         2.4 KB
+    │   │           │   ├── 📄 BorrowController.java       2.3 KB
+    │   │           │   ├── 📄 CommonController.java       804 B
+    │   │           │   ├── 📄 LoginController.java        1.4 KB
+    │   │           │   └── 📄 ReaderController.java       1.6 KB
+    │   │           ├── 📂 domain                            0 B
+    │   │           │   ├── 📄 Borrow.java                 654 B
+    │   │           │   ├── 📂 dto                           0 B
+    │   │           │   │   ├── 📄 Condition.java          357 B
+    │   │           │   │   └── 📄 LoginDto.java           371 B
+    │   │           │   ├── 📂 entity                        0 B
+    │   │           │   │   ├── 📄 Admin.java              626 B
+    │   │           │   │   ├── 📄 Book.java               550 B
+    │   │           │   │   └── 📄 Reader.java             671 B
+    │   │           │   ├── 📄 PageResult.java             896 B
+    │   │           │   ├── 📄 Result.java                 997 B
+    │   │           │   └── 📂 vo                            0 B
+    │   │           │       ├── 📄 AdminVo.java            352 B
+    │   │           │       ├── 📄 BorrowVo.java           634 B
+    │   │           │       └── 📄 ReaderVo.java           411 B
+    │   │           ├── 📂 exception                         0 B
+    │   │           │   ├── 📄 AlreadyExistException.java  176 B
+    │   │           │   └── 📄 BaseException.java          161 B
+    │   │           ├── 📂 handle                            0 B
+    │   │           │   └── 📄 GlobalExceptionHandler.java 3.3 KB
+    │   │           ├── 📂 interceptor                       0 B
+    │   │           │   ├── 📄 JwtTokenInterceptor.java    2.8 KB
+    │   │           │   └── 📄 LoggingInterceptor.java     748 B
+    │   │           ├── 📂 mapper                            0 B
+    │   │           │   ├── 📄 AdminMapper.java            744 B
+    │   │           │   ├── 📄 BookMapper.java             663 B
+    │   │           │   ├── 📄 BorrowMapper.java           674 B
+    │   │           │   └── 📄 ReaderMapper.java           483 B
+    │   │           ├── 📂 service                           0 B
+    │   │           │   ├── 📄 AdminService.java           344 B
+    │   │           │   ├── 📄 BookService.java            414 B
+    │   │           │   ├── 📄 BorrowService.java          460 B
+    │   │           │   ├── 📂 Impl                          0 B
+    │   │           │   │   ├── 📄 AdminServiceImpl.java   2.8 KB
+    │   │           │   │   ├── 📄 BookServiceImpl.java    3.5 KB
+    │   │           │   │   ├── 📄 BorrowServiceImpl.java  2.9 KB
+    │   │           │   │   └── 📄 ReaderServiceImpl.java  4.2 KB
+    │   │           │   └── 📄 ReaderService.java          486 B
+    │   │           └── 📂 util                              0 B
+    │   │               ├── 📄 Advice.java                 1.2 KB
+    │   │               ├── 📄 JwtUtils.java               1.2 KB
+    │   │               ├── 📄 MyUtils.java                1.2 KB
+    │   │               └── 📄 ThreadLocalUtil.java        405 B
+    │   └── 📂 resources                                     0 B
+    │       ├── 📄 application-dev.yml                     721 B
+    │       ├── 📄 application.yml                         650 B
+    │       ├── 📄 banner.txt                              6.4 KB
+    │       └── 📂 mapper                                    0 B
+    │           ├── 📄 BorrowMapper.xml                    369 B
+    │           └── 📄 ReaderMapper.xml                    448 B
+    └── 📂 test                                              0 B
+        └── 📂 java                                          0 B
+            └── 📂 com                                       0 B
+                └── 📂 clb                                   0 B
+                    ├── 📄 BookApplicationTests.java       505 B
+                    ├── 📄 BorrowTest.java                 744 B
+                    └── 📄 TestRedis.java                  659 B
+
 - `src/main/java/com/clb/`
   - `config`：配置文件
   - `constant`：枚举字段
