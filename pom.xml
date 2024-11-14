@@ -121,13 +121,6 @@
                 </excludes>
             </configuration>
         </plugin>
-
-        <!-- SonarQube Maven 插件 -->
-        <plugin>
-            <groupId>org.sonarsource.scanner.maven</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>3.9.0.918</version> <!-- 你可以根据需要使用最新版 -->
-        </plugin>
     </plugins>
 </build>
 

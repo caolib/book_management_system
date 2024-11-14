@@ -1,52 +1,39 @@
-name: Build and Analyze with SonarQube
+name: Build
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+
 
 jobs:
   build:
-    name: Build and Analyze
+    name: Build and analyze
     runs-on: ubuntu-latest
-    
+
     steps:
-      # Checkout the repository
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      # Set up Java (required for SonarQube analysis)
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: 17
-          distribution: 'zulu'
-      
-      # Cache Maven dependencies
-      - name: Cache Maven dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-      
-      # Cache SonarQube dependencies
+          distribution: 'zulu' # Alternative distribution options are available.
       - name: Cache SonarQube packages
         uses: actions/cache@v4
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
-
-      # Run Maven build and SonarQube analysis
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: mvn -B verify sonar:sonar \
-          -Dsonar.projectKey=your_project_key \
-          -Dsonar.projectName='Your Project Name' \
-          -Dsonar.host.url=$SONAR_HOST_URL \
-          -Dsonar.login=$SONAR_TOKEN
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=book -Dsonar.projectName='图书借阅管理系统'
