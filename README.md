@@ -54,8 +54,9 @@ spring:
   # mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    # 确保你已经创建了java_design数据库，sql文件在右侧Release中
     url: jdbc:mysql://localhost:3306/java_design?serverTimezone=Asia/Shanghai
-    # 注意修改用户名和密码为你自己的
+    # 注意修改用户名和密码为你的mysql数据库的
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
@@ -63,7 +64,7 @@ spring:
   # redis
   data:
     redis:
-      # 修改host和密码为你的，如果没有密码则删除password项，redis默认没有密码
+      # 修改host和密码为你的，如果没有密码则删除password项，redis默认没有密码（如果你没有配置的话）
       host: localhost
       password: 123456
       port: 6379
@@ -128,12 +129,6 @@ java -jar .\book-1.0.0.RELEASE.jar
 
 ```cmd
 java -jar .\book-1.0.0.RELEASE.jar --server.port=8081
-```
-
-> ~也可以关闭redis~
-
-```cmd
-java -jar .\book-1.0.0.RELEASE.jar --server.port=8081 --spring.cache.type=none
 ```
 
 > [!tip]
