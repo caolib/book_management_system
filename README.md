@@ -10,12 +10,6 @@
 ![GitHub Release](https://img.shields.io/github/v/release/tankingcao/java_design?include_prereleases&sort=date&display_name=release&style=flat&labelColor=red&cacheSeconds=3600)
 ![下载量](https://img.shields.io/github/downloads/caolib/book_management_system/total.svg)
 
-<!-- 
-![GitHub License](https://img.shields.io/github/license/caolib/book_management_system?style=flat)
-![opened issues](https://img.shields.io/github/issues/caolib/book_management_system?color=red&cacheSeconds=3600)
-![closed issues](https://img.shields.io/github/issues-closed/caolib/book_management_system?color=green&cacheSeconds=3600)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/caolib/book_management_system?labelColor=red)
--->
 
 使用`springboot+mybatis-plus`框架制作的一个简单的图书借阅管理系统后台服务器
 
@@ -32,111 +26,166 @@
 > - 使用前先使用maven下载相关依赖，建议使用IDEA编译器，捆绑了maven，可以直接使用
 > - 注意前后端一般是同时修改的，必须匹配版本，没有特别需求直接使用最新的
 
-## 快速开始
+## 使用IDEA快速开发
 
-### 1.参照注释修改配置文件
+如果你使用IDEA开发，可以按照以下步骤快速进行使用
 
-路径：`src/main/resources/application.yml`
+### 后端项目
 
-```yml
-# 项目启动端口，默认8080，修改后前端中的请求地址也要对应修改
-server:
-  port: 8080
+> [!WARNING]
+>
+> 如果你没有安装git，可以手动下载[项目压缩包](https://github.com/caolib/book_management_system/archive/refs/heads/master.zip)然后解压后用IDEA打开
 
-# mybatis-plus配置
-mybatis-plus:
-  configuration:
-    map-underscore-to-camel-case: true # 下划线命名转驼峰
-  type-aliases-package: com.clb.domain # 别名扫描包
-  mapper-locations: classpath:mapper/*.xml # mapper文件扫描
+1. 复制项目地址
 
-spring:
-  # mysql
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    # 确保你已经创建了java_design数据库，sql文件在右侧Release中
-    url: jdbc:mysql://localhost:3306/java_design?serverTimezone=Asia/Shanghai
-    # 注意修改用户名和密码为你的mysql数据库的
-    username: root
-    password: 123456
-    type: com.alibaba.druid.pool.DruidDataSource
-
-  # redis
-  data:
-    redis:
-      # 修改host和密码为你的，如果没有密码则删除password项，redis默认没有密码（如果你没有配置的话）
-      host: localhost
-      password: 123456
-      port: 6379
-      database: 0
-      timeout: 5000ms
-  cache:
-    type: redis  
-    redis:
-      time-to-live: 3600000 # 缓存过期时间,单位ms(此处一小时)
-
-  # 热重载排除advice文件
-  devtools:
-    restart:
-      additional-exclude: com/clb/util/Advice.class
-  # 支持控制台ansi颜色输出(使用java命令行部署时),如果乱码则删除下面3行
-  output:
-    ansi:
-      enabled: always
-      
-# 日志
-logging:
-  level:
-    com.clb: debug
-  pattern:
-    dateformat: MM-dd HH:mm:ss.SSS
-
+```bash
+git@github.com:caolib/book_management_system.git
 ```
 
-### 2.启动项目
+2. 打开IDEA，点击右上角**从VCS获取**，粘贴项目地址，选取一个合适的目录，然后点击克隆
 
-使用编译器一键启动项目(前提:mysql和redis数据库配置正确且已经启动)
+<img src="https://s2.loli.net/2024/12/30/fm7o3L4EDTVQZAR.png" alt="image-20241230113626675" style="zoom: 50%;" />
 
-## 项目目录结构
+#### 设置Maven
 
-- `src/main/java/com/clb/`
-  - `config`：配置文件
-  - `constant`：枚举字段
-  - `controller`：表现层
-  - `domain`：实体类等
-  - `exception`：异常类
-  - `handle`：处理器类
-  - `interceptor`：拦截器类
-  - `mapper`：持久层
-  - `service`：业务层
-  - `util`：工具类
-- `src/main/resources`
-  - `mapper`：映射文件mapper
-  - `application.yml`：配置文件
-  - `banner.txt`：spring项目启动logo
-- `src/test/`：测试类
-- `pom.xml`：依赖管理
+项目打开后先**打开设置**检查maven配置是否正确，如果你没有自己额外下载maven，可以使用IDEA捆绑的maven
 
-## 打包使用
+<img src="https://s2.loli.net/2024/12/30/bcy9G1Bo6qKnwWL.png" alt="image-20241230115029577" style="zoom:67%;" />
 
-> 将项目使用maven打成jar包后可以通过命令行执行jar包
+设置好后打开maven窗口刷新，无报错则成功导入依赖
 
-```cmd
-java -jar .\book-1.0.0.RELEASE.jar
+![image-20241230115352158](https://s2.loli.net/2024/12/30/FlNtrXiGqSzLTC3.png)
+
+#### 设置Java版本
+
+在文件选项，点击项目结构
+
+![image-20241230115812170](https://s2.loli.net/2024/12/30/78ZGtsJQ1uWwiqD.png)
+
+本项目使用Java17，没有安装可以下载一个
+
+![image-20241230115937252](https://s2.loli.net/2024/12/30/ct17Yg49obIqdf5.png)
+
+#### 启动项目
+
+这些都无误就可以启动项目了
+
+![image-20241230120342131](https://s2.loli.net/2024/12/30/CnyfmkMYhcbjgzO.png)
+
+#### 配置数据库
+
+##### Mysql配置
+
+###### 连接数据库
+
+1. 先下载sql文件，[Releases · caolib/book_management_system](https://github.com/caolib/book_management_system/releases)
+2. 创建一个mysql数据源
+
+![image-20241230120647502](https://s2.loli.net/2024/12/30/jJfCoGuQl8zdXKt.png)
+
+> [!IMPORTANT]
+>
+> 1. 主机：你的mysql数据库地址，如果安装在本地，直接填localhost，如果安装在虚拟机上可以先使用`ip addr`命令查看虚拟机地址，然后填写虚拟机地址（注意，如果虚拟机重启，这个地址大概率会变化）
+>
+> ![image-20241230121438535](https://s2.loli.net/2024/12/30/ojKx2nCA1gmJeZ3.png)
+>
+> 2. 端口：如果没修改过，默认是3306
+>
+> > [!caution]
+> >
+> > 如果在虚拟机上，需要开放防火墙端口这里顺便打开了redis的端口6379
+> >
+> > ```bash
+> > sudo firewall-cmd --zone=public --add-port=3306/tcp --permanent
+> > sudo firewall-cmd --zone=public --add-port=6379/tcp --permanent
+> > ```
+>
+> 3. 用户名，密码：按照自己设置的填写就可以
+> 4. 点击测试连接，成功后点击确定
+
+
+
+![image-20241230120920597](https://s2.loli.net/2024/12/30/Fjw8QLcZ1eT4zMb.png)
+
+###### 导入数据库
+
+右键刚创建的数据源，选择运行sql脚本，然后选择下载的sql文件就可以了
+
+![image-20241230123701850](https://s2.loli.net/2024/12/30/iIlEFJ1D5P89eaX.png)
+
+导入后，选择`java_design`架构就可以看到导入的表了，**应该是有四张表和一个视图**
+
+##### Redis配置
+
+###### 连接数据库
+
+同样创建一个redis数据源
+
+![image-20241230124300262](https://s2.loli.net/2024/12/30/IvGRhDyglKxbPqM.png)
+
+redis默认没有密码，只需要填写主机号，同mysql，然后点击测试连接，成功后点击确定
+
+![image-20241230124346981](https://s2.loli.net/2024/12/30/UsvGWhiOnxAdpuP.png)
+
+#### 修改配置文件
+
+打开`application-dev.yml`文件，修改host（主机），用户名、密码等，修改后重启项目
+
+![image-20241230130628980](https://s2.loli.net/2024/12/30/jQ63Re19UYduLPM.png)
+
+#### 测试接口
+
+项目的[API](https://app.apifox.com/project/5694188)，测试相应接口
+
+![image-20241230134927055](https://s2.loli.net/2024/12/30/kcLVWdvb7loOeYA.png)
+
+### [前端项目](https://github.com/caolib/vue3-vite)
+
+#### 克隆项目
+
+下载或clone到本地，这里使用VSCode打开(随便用什么打开都行)
+
+#### 检查配置
+
+打开`vite.config.js`文件,查看后端服务地址，默认是本地8080，如果无误则无需修改
+
+```js
+  server: {
+    host: "localhost",
+    port: 5173,
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080", //后端服务地址
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  }
 ```
 
-> 可以修改端口号
+#### 安装依赖
 
-```cmd
-java -jar .\book-1.0.0.RELEASE.jar --server.port=8081
+打开控制台，运行`npm install`，如果报错，可以以管理员方式打开控制台再运行
+
+> [!CAUTION]
+>
+> 使用npm需要安装Nodejs，版本不要太低，18.x和20.x都可以
+
+```sh
+npm install
 ```
 
-> [!tip]
-> 此项目对应的[微服务版本](https://github.com/caolib/cloud-book)
+#### 启动项目
 
-## 提交分析
-![Alt](https://repobeats.axiom.co/api/embed/fff6dbaa9aa86bbe35a974910b89f89dd10a3383.svg "Repobeats analytics image")
+```sh
+npm run dev
+```
 
+默认运行在`http://localhost:5173`，账号和密码可以在mysql表中查看
+
+
+
+<!--
 ## Star History
-
 [![Star History Chart](https://api.star-history.com/svg?repos=caolib/book_management_system,caolib/vue3-vite&type=Timeline)](https://star-history.com/#caolib/book_management_system&caolib/vue3-vite&Timeline)
+-->
