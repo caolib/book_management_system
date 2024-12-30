@@ -183,9 +183,17 @@ npm run dev
 
 默认运行在`http://localhost:5173`，账号和密码可以在mysql表中查看
 
+---
 
 
-<!--
-## Star History
-[![Star History Chart](https://api.star-history.com/svg?repos=caolib/book_management_system,caolib/vue3-vite&type=Timeline)](https://star-history.com/#caolib/book_management_system&caolib/vue3-vite&Timeline)
--->
+### 关于
+
+<img align='right' src="https://s2.loli.net/2024/12/30/qPgJilDEutcjFCO.png" />❓ 有问题可以在[Issues](https://github.com/caolib/book_management_system/issues)提问
+
+⭐ 如果对你有帮助的话请点个star
+
+☕ 请我 [喝杯咖啡](https://bin-sites.pages.dev/sponsor/)
+
+📧 联系我 [1265501579@qq.com](mailto:1265501579@qq.com)
+
+
