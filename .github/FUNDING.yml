@@ -2,5 +2,5 @@ github:
   - username: caolib
   - repo: book_management_system
   - sponsor_type: "custom"
-  - sponsor_url: "clb.pages.dev"
+  - sponsor_url: "https://clb.pages.dev"
   - sponsor_message: "赞助我"
