@@ -183,6 +183,9 @@ npm run dev
 
 默认运行在`http://localhost:5173`，账号和密码可以在mysql表中查看
 
-## Star History
 
+
+<!--
+## Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=caolib/book_management_system,caolib/vue3-vite&type=Timeline)](https://star-history.com/#caolib/book_management_system&caolib/vue3-vite&Timeline)
+-->
