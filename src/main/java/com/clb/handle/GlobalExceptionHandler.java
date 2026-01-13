@@ -69,7 +69,7 @@ public class GlobalExceptionHandler {
             log.error("当前redis没有密码，yml中错误设置了密码");
             return Result.error(message);
         } else if (message.contains("invalid password")) {
-            log.error(message+" redis密码错误");
+            log.error(message + " redis密码错误");
             return Result.error("redis密码错误!");
         } else if (message.contains("NOAUTH HELLO")) {
             log.error("先为redis配置密码 " + message);
@@ -83,7 +83,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Result<String> MethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        log.error(Excep.ARG_NOT_VALID+e.getMessage());
+        log.error(Excep.ARG_NOT_VALID + e.getMessage());
         return Result.error(Excep.ARG_NOT_VALID);
     }
 

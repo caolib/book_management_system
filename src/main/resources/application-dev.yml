@@ -5,7 +5,7 @@ spring:
   # mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://centos:3306/java_design?serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    url: jdbc:mysql://localhost:3306/java_design?serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
@@ -13,8 +13,8 @@ spring:
   # redis
   data:
     redis:
-      host: centos
-#      password: 123456
+      host: localhost
+#      password: redis123
       port: 6379
       database: 0
 
